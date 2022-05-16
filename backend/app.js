@@ -1,48 +1,81 @@
 const express = require('express');
+const rateLimit = require('express-rate-limit');
+const path = require("path");
+const upload = require('express-fileupload');
+const morgan = require('morgan');
+
+// //////////////////////////////////////////////////////////////////////////////
+
+// security
+const helmet = require('helmet');
 const cors = require('cors');
-require('dotenv').config({path: '../Config.env'});
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+const hpp = require('hpp');
+//
+// //////////////////////////////////////////////////////////////////////////////
+//
+const productRouter = require('./routes/productRoutes');
+const inventoryRouter = require('./routes/inventoryRoutes');
+
+// //////////////////////////////////////////////////////////////////////////////
+//
+const globalErrorHandler = require('./controllers/errorController');
+const AppError = require('./utils/appError');
+
+//////////////////////////////////////////////////////////////////////////////
+
 const app = express();
-const mongoose = require('mongoose');
-//////////////////////////////////////////////////////////////////////////////
-
-
-const uri = process.env.DATABASE_STRING;
-mongoose.connect(uri);
-const connection = mongoose.connection;
-connection.once('open', () => {
-    console.log("MongoDB database connection established successfully");
-})
-
-
-//////////////////////////////////////////////////////////////////////////////
-app.use(cors());
+app.use(express.static(path.join(__dirname, 'public')));
+//
+// //////////////////////////////////////////////////////////////////////////////
+//
 app.use(express.json());
+app.use(morgan('dev'));
+app.use(cors());
+// // adds http headers for security
+app.use(helmet());
+// // against query selector injection attacks
+app.use(mongoSanitize());
+// // sanitize untrusted html
+app.use(xss());
+// // protect against http parameter pollution attacks
+app.use(hpp({
+    whitelist: []
+}));
+// // file uploads
+app.use(upload({
+    preserveExtension: true
+}));
+
 //////////////////////////////////////////////////////////////////////////////
 
-app.use('/api/v1/notifications');
-// we fo2 hat require el routes file we testa5demo
-// ya3ni masalan momken const notificationRoutes = require('../routes/notificationRoutes');
-// we hena te3mel masalan app.use('/api/v1/notifications', notificationRouter);
-// fel routes file hayeb2a shaklo keda masalan:
-// const express = require("express");
-// const router = express.Router({
-//     mergeParams: true
-// });
-//
-// router.route('/')
-//     .get(reviewController.getAllReviews)
-//     .post(authController.restrictTo('user'), reviewController.setTourUserIds, reviewController.createNewReview);
-//
-// router.route('/:id')
-//     .get(reviewController.getReview)
-//     .delete(authController.restrictTo('user', 'admin'), reviewController.deleteReview)
-//     .patch(authController.restrictTo('user', 'admin'), reviewController.updateReview);
-//
-//
-// module.exports = router;
-// we howa router da el enta hata3melo require we te7oto fih el notifications route fe app.js
+// limiting the number of api calls
 
+const limiter = rateLimit({
+    max: 100,
+    windowMS: 60 * 60 * 1000,
+    message: 'Too many requests from this IP Address, please try again in an hour'
+});
+app.use(limiter);
+
+////////////////////////////////////////////////////////////////////////////
+// routes
+
+app.use('/api/v1/products', productRouter);
+app.use('/api/v1/inventory', inventoryRouter);
+
+//////////////////////////////////////////////////////////////////////////////
+
+// handle undefined routes
+app.all('*', (req, res, next) => {
+    next(new AppError(`Can't find ${req.originalUrl} on this server.`, 404));
+});
+
+app.use(globalErrorHandler);
 
 //////////////////////////////////////////////////////////////////////////////
 
 module.exports = app;
+
+//////////////////////////////////////////////////////////////////////////////
