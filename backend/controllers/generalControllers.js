@@ -83,7 +83,7 @@ exports.getOne = (Model, popOptions) => catchAsync(async (req, res, next) => {
 
 exports.getAll = Model => catchAsync(
     async (req, res, next) => {
-        
+
 
         //TODO: CHANGE
         let filter = {};
