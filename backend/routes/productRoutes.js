@@ -13,7 +13,8 @@ router.route('/')
     .get(productController.getAllProducts);
 
 router.route('/:id')
-    .get(productController.getProduct);
+    .get(productController.getProduct)
+    .delete(productController.deleteProduct);
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -21,7 +21,7 @@ const productSchema = mongoose.Schema({
         type: String,
         required: [true, 'A product must have a category.'],
         enum: {
-            values: ['Greatest Offers', 'Gourmet', 'Fruits & Vegetables', 'Cheese',
+            values: ['Greatest Offers', 'gourmet', 'Fruits & Vegetables', 'Cheese',
                 'Meat', 'Chicken & Poultry', 'Seafood', 'Frozen Food', 'Cold Cuts',
                 'Salads & Ready Meals', 'Bakery & Pastry', 'Eggs', 'Dairy Products',
                 'Milk', 'Water', 'Beverages', 'Everyday Roastery Coffee', 'Coffee & Tea',
@@ -45,12 +45,28 @@ const productSchema = mongoose.Schema({
     },
     quantity: {
         type: Number,
-        required: [true, 'A product must have a quantity.']
+        default: 0
     },
+    stock: {
+        type: String,
+        default: 'Available',
+        enum: {
+            values: ['Available', 'Unavailable']
+        }
+    }
 
 }, {
     toJSON: {virtuals: true},
     toObject: {virtuals: true},
+});
+
+/////////////////////////////////////////////////////////////////////////////
+
+productSchema.pre('save', function (next) {
+    if (this.quantity === 0) {
+        this.stock = 'Unavailable';
+    }
+    next();
 });
 
 /////////////////////////////////////////////////////////////////////////////

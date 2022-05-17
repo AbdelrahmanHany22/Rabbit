@@ -7,45 +7,71 @@ const Products = require('../models/productModel');
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 
-exports.updateInventory = catchAsync(async (req, res, next) => {
+exports.updateInventory = catchAsync(
+    async (req, res, next) => {
 
-    if (!req.files) {
-        return next(new AppError('Please upload a csv file containing the inventory list.', 401));
-    }
-
-    const file = req.files;
+        let f = 0;
 
 
-    if (file.inventory.mimetype.split('/')[1] !== 'csv') {
-        return next(new AppError('Please upload a csv file containing the inventory list.', 401));
-    }
+        if (!req.files) {
+            return next(new AppError('Please upload a csv file containing the inventory list.', 404));
+        }
+
+        const file = req.files;
 
 
-    const csvData = file.inventory.data.toString('utf8');
-    csv().fromString(csvData).then(jsonObj => {
+        if (file.inventory.mimetype.split('/')[1] !== 'csv') {
+            return next(new AppError('Please upload a csv file containing the inventory list.', 404));
+        }
 
-        const updatedInventory = jsonObj.map(async (product) => {
-            const currentProduct = await Products.findOne({name: product.name});
 
-            if (currentProduct) {
-                const newQuantity = Number(currentProduct.quantity) + Number(product.quantity);
-                currentProduct.quantity = newQuantity;
+        const csvData = file.inventory.data.toString('utf8');
 
-                if (currentProduct.description !== product.description) {
-                    currentProduct.description = product.description;
+        csv().fromString(csvData).then(async (jsonObj) => {
+
+
+            for (const product of jsonObj) {
+
+                const currentProduct = await Products.findOne({name: product.name});
+
+                if (currentProduct !== null) {
+
+                    try {
+                        const newQuantity = Number(currentProduct.quantity) + Number(product.quantity);
+                        currentProduct.quantity = newQuantity;
+
+
+                        if (currentProduct.description !== product.description) {
+                            currentProduct.description = product.description;
+                        }
+                        if (currentProduct.price !== product.price) {
+                            currentProduct.price = product.price;
+                        }
+                        if (currentProduct.picture !== product.picture) {
+                            currentProduct.picture = product.picture;
+                        }
+
+
+                    } catch (err) {
+
+                    }
+
+
+                    currentProduct.save();
+
+
+                } else {
+
+                    try {
+                        await Products.create(product);
+                    } catch (err) {
+                        return new AppError('Bad request while creating new Products' +
+                            ' Check your csv input file and try again.', 403);
+                    }
+
                 }
-                if (currentProduct.price !== product.price) {
-                    currentProduct.price = product.price;
-                }
-                if (currentProduct.picture !== product.picture) {
-                    currentProduct.picture = product.picture;
-                }
 
 
-                currentProduct.save();
-
-            } else {
-                await Products.create(product);
             }
 
         });
@@ -56,14 +82,9 @@ exports.updateInventory = catchAsync(async (req, res, next) => {
             message: 'Inventory successfully updated.'
         });
 
+
     });
 
-
-});
-
-
-// TODO:
-// exports.deleteProduct = generalController.deleteOne(Product);
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
