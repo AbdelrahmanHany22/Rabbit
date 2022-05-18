@@ -17,6 +17,7 @@ const hpp = require('hpp');
 //
 const productRouter = require('./routes/productRoutes');
 const inventoryRouter = require('./routes/inventoryRoutes');
+const userRouter = require('./routes/userRoutes');
 
 // //////////////////////////////////////////////////////////////////////////////
 //
@@ -39,10 +40,6 @@ app.use(helmet());
 app.use(mongoSanitize());
 // // sanitize untrusted html
 app.use(xss());
-// // protect against http parameter pollution attacks
-app.use(hpp({
-    whitelist: []
-}));
 // // file uploads
 app.use(upload({
     preserveExtension: true
@@ -64,8 +61,9 @@ app.use(limiter);
 
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/inventory', inventoryRouter);
+app.use('/api/v1/users', userRouter);
 
-//////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 // handle undefined routes
 app.all('*', (req, res, next) => {
