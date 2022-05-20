@@ -1,6 +1,5 @@
 const express = require('express');
 const rateLimit = require('express-rate-limit');
-const path = require("path");
 const upload = require('express-fileupload');
 const morgan = require('morgan');
 
@@ -11,7 +10,6 @@ const helmet = require('helmet');
 const cors = require('cors');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
-const hpp = require('hpp');
 //
 // //////////////////////////////////////////////////////////////////////////////
 //

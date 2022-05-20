@@ -56,8 +56,9 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         default: true,
         select: false,
-    }
-
+    },
+    // The order ids will be embedded here
+    orderIds: [],
 });
 
 /////////////////////////////////////////////////////////////////////////////////////////////
