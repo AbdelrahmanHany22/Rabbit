@@ -1,1 +1,3 @@
 .idea
+./backend/Product-Inventory-API/Config.env
+./backend/User-API/Config.env
