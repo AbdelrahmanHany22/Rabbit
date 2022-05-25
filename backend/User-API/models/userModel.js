@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema({
         lowercase: true,
         validate: [validator.isEmail, 'Please provide a valid email.']
     },
-    addressCoordinate: [Number],
+    addressCoordinates: [Number],
     addressDescription: String,
     photo: {
         type: String,
