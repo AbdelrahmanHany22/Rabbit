@@ -5,6 +5,7 @@ const crypto = require('crypto');
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 const User = require('./../models/userModel');
+const GuestUser = require('./../models/guestUserMode');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 
@@ -173,3 +174,44 @@ exports.logout = (req, res) => {
         status: 'success'
     });
 };
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// guest user authentication
+
+const createAndSendTokenToGuestUser = (user, statusCode, res) => {
+    const token = signToken(user._id);
+
+    const cookieOptions = {
+        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
+        secure: true,
+    };
+
+    res.cookie('jwt', token, cookieOptions);
+
+    res.status(statusCode).json({
+        status: 'success',
+        token,
+        data: {
+            user
+        }
+    });
+};
+
+
+// TODO: TELL ABDO TO INTEGRATE HIS NOTIFICATION SYSTEM INTO HERE
+exports.createGuestUserAndSendToken = catchAsync(
+    async (req, res, next) => {
+
+
+        const newGuestUser = await GuestUser.create({
+            name: req.body.name,
+            email: req.body.email,
+            addressCoordinates: req.body.addressCoordinates,
+            addressDescription: req.body.addressDescription,
+        });
+
+
+        createAndSendTokenToGuestUser(newGuestUser, 201, res);
+    }
+);

@@ -23,12 +23,9 @@ const userSchema = mongoose.Schema({
     },
     addressCoordinates: [Number],
     addressDescription: String,
-    photo: {
-        type: String,
-    },
     role: {
         type: String,
-        enum: ['user', 'admin'],
+        enum: ['user'],
         default: 'user'
     },
     password: {
@@ -58,7 +55,13 @@ const userSchema = mongoose.Schema({
         select: false,
     },
     // The order ids will be embedded here
-    orderIds: [],
+    orderIds: [
+        {
+            type: mongoose.Schema.ObjectId,
+            ref: 'Order'
+        }
+    ],
+
 });
 
 /////////////////////////////////////////////////////////////////////////////////////////////

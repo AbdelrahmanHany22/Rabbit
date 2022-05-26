@@ -4,26 +4,21 @@ const mongoose = require('mongoose');
 //////////////////////////////////////////////////////////////////////////////
 
 
-const orderSchema = mongoose.Schema({
-    user: {
+const shipmentSchema = mongoose.Schema({
+    order: {
         type: mongoose.Schema.ObjectId,
-        ref: 'User',
+        ref: 'Order',
         required: true
     },
-    cart: {
+    deliveryAgent: {
         type: mongoose.Schema.ObjectId,
-        ref: 'Cart',
+        ref: 'DeliveryAgent',
         required: true
     },
-    status: {
-        type: String,
-        default: 'CREATED',
-        enum: ['CREATED', 'PROCESSING', 'SHIPPING', 'FULFILLED', 'CANCELED'],
-    }
-
+    coordinatesOfCurrentLocation: [Number]
 });
 
 //////////////////////////////////////////////////////////////////////////////
-const Order = mongoose.model('Order', orderSchema);
+const Shipment = mongoose.model('Shipment', shipmentSchema);
 
-module.exports = Order;
+module.exports = Shipment;

@@ -1,17 +1,17 @@
 const express = require("express");
-const orderControllers = require('../controllers/orderControllers');
+const shippingControllers = require('../controllers/shippingControllers');
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 const router = express.Router();
 
 router.route('/')
-    .get(orderControllers.getAllOrders)
-    .post(orderControllers.createOrder);
+    .get(shippingControllers.getAllShipments)
+    .post(shippingControllers.createShipment);
 
 router.route('/:id')
-    .get(orderControllers.getOrder)
-    .patch(orderControllers.changeOrderStatus);
+    .get(shippingControllers.getShipment)
+    .patch(shippingControllers.updateShipmentData);
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
