@@ -39,6 +39,6 @@ const guestUserSchema = mongoose.Schema({
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-const User = mongoose.model('User', userSchema);
+const GuestUser = mongoose.model('GuestUser', guestUserSchema);
 
-module.exports = User;
+module.exports = GuestUser;
