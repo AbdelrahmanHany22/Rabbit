@@ -1,0 +1,99 @@
+.payment-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.payment-inputs{
+    border-right: 2px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 31.5vw;
+
+
+}
+
+.payment-input{
+    margin:2vw;
+    padding:2vw;
+}
+
+.payment-details{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+
+}
+
+.cod{
+    width: 4.5vmin;
+}
+
+.image:active{
+    background-color: #061C15;
+}
+
+.image{
+    background-color: #124831;
+    color: #DFFE16;
+    font-weight: 900;
+    font-size: 1.5vmin;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-cart{
+    width: 25%;
+    border-left: 2px solid lightgray;
+    height: 31.5vw;
+    
+}
+
+.payment-price{
+    width: 90%;
+    background-color: lightgray;
+    height: 10vmax;
+    font-size: 4vmax;
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+    padding-left: 10%;
+    font-weight: 900;
+}
+
+@media only screen and (max-width: 1024px){
+
+    .payment-inputs, .payment-cart{
+        width: 32.5%;
+        height: 47vh;
+
+    }
+
+    .payment-input{
+        margin-top: 3vh;
+        margin-bottom: 3vh;
+        padding-top: 6vw;
+        padding-bottom: 6vw;
+    }
+
+    .payment-body{
+        height: 55vh;
+        justify-content: space-between;
+    }
+
+    .payment-details{
+        height: 100%;
+        width: 120%;
+    }
+
+    .cod{
+        width: 6vw;
+    }
+
+}

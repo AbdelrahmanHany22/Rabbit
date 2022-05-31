@@ -10,36 +10,12 @@
     box-sizing: inherit;
 }
 
-.category-body{
+.html{
+    background-color:#061C15;
+}
+.app-body{
     display: flex;
     flex-direction: column;
-    align-items: center;
     background-color: #061C15;
-    margin: 15px;
-    color: #DFFE16;
-    font-weight: 900;
-    font-size: 19px;
-}
-
-.navbar-body{
-    height: 70px;
-    background-color: #124831;
-}
-
-.navbar-logo{
-    padding-left: 50px;
-    color: #DFFE16;
-    font-weight: 900;
-    font-size: 2.5rem;
-}
-
-.carousel-body{
-    background-color: #061C15;
-    border-width: 2px;
-    border-color: aqua;
-}
-
-.carousel-item{
-    background-color: #061C15;
-    border-radius: 25px;
+    position: relative;
 }
