@@ -3,6 +3,9 @@ const cors = require('cors');
 require('dotenv').config({path: '../Config.env'});
 const app = express();
 const mongoose = require('mongoose');
+const striperoutes = require('./routes/stripeRoutes')
+
+const usermodels = require('./models/notificationModels')
 //////////////////////////////////////////////////////////////////////////////
 
 
@@ -17,31 +20,11 @@ connection.once('open', () => {
 //////////////////////////////////////////////////////////////////////////////
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
+app.use('/api/stripe', striperoutes);
+app.use('/api/notification', usermodels)
 //////////////////////////////////////////////////////////////////////////////
-
-app.use('/api/v1/notifications');
-// we fo2 hat require el routes file we testa5demo
-// ya3ni masalan momken const notificationRoutes = require('../routes/notificationRoutes');
-// we hena te3mel masalan app.use('/api/v1/notifications', notificationRouter);
-// fel routes file hayeb2a shaklo keda masalan:
-// const express = require("express");
-// const router = express.Router({
-//     mergeParams: true
-// });
-//
-// router.route('/')
-//     .get(reviewController.getAllReviews)
-//     .post(authController.restrictTo('user'), reviewController.setTourUserIds, reviewController.createNewReview);
-//
-// router.route('/:id')
-//     .get(reviewController.getReview)
-//     .delete(authController.restrictTo('user', 'admin'), reviewController.deleteReview)
-//     .patch(authController.restrictTo('user', 'admin'), reviewController.updateReview);
-//
-//
-// module.exports = router;
-// we howa router da el enta hata3melo require we te7oto fih el notifications route fe app.js
-
 
 //////////////////////////////////////////////////////////////////////////////
 
