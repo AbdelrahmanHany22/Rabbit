@@ -1,0 +1,145 @@
+.navbar-brand, .navbar-brand:hover{
+    font-family: sans-serif;
+    font-weight: 900;
+    color: #DFFE16;
+    font-size: 2.5rem;
+    margin-left: 80px;
+    
+
+}
+
+.navbar{
+    background-color: #124831;
+    height: 66px;
+    margin-bottom: 20px;
+}
+
+header{
+    background-color: #124831;
+    height: 66px;
+    margin-bottom: 20px;
+
+  }
+
+  .empty{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15vw;
+    height: 30vh;
+  }
+
+button{
+    background-color: #124831;
+    font-family: sans-serif;
+    font-weight: 900;
+    color: #DFFE16;
+    border-radius: 5px;
+    border:0ch;
+}
+
+.checkout{
+    background-color: #124831;
+    font-family: sans-serif;
+    font-weight: 900;
+    color: #DFFE16;
+    border-radius: 5px;
+    padding: 5px;
+    border:0ch;
+    margin: auto;
+    display: flex;
+    font-size: larger;
+}
+
+h4{
+    text-align: center;
+}
+
+.links, .links:hover, a, a:hover{
+    font-family: sans-serif;
+    font-weight: 900;
+    color: #DFFE16;
+    text-decoration: none;
+    padding: 0px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: none;
+    margin-right: 20px;
+  }
+
+  li {
+    float: left;
+  }
+
+
+
+.cartRow{
+    font-family: sans-serif;
+    size: 1.5rem;
+    font-weight: 900;
+    color: #124831;
+    margin-left: 135px;
+
+}
+
+  li {
+      text-align: right;
+      font-family: sans-serif;
+      font-weight: 500;
+      color: #DFFE16;
+      font-size: 0.9rem;
+      margin-right: 20px;
+      margin-bottom: 0px;
+  }
+  
+  .emptyButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+  }
+
+  .buttons{
+    display: inline-block;
+    vertical-align: text-top;
+    margin: 0 auto;
+  }
+
+  .total{
+    text-align: left;
+    font-family: sans-serif;
+    font-weight: 600;
+    margin-left: 10px;
+    color: #124831;
+    margin-left: 25px;
+  }
+
+  img.small{
+      height: 100px;
+      width: 110px;
+  }
+
+  .itemCount{
+      margin-left: 10px;
+      margin-right: 10px;
+      font-weight: 600;
+  }
+
+  .card-title{
+    font-family: sans-serif;
+    size: 1.5rem;
+    font-weight: 400;
+    color: #124831;
+
+  }
+
+  .card{
+      width: 300px;
+      display: flexbox;
+    
+  }
