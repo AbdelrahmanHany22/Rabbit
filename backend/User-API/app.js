@@ -14,6 +14,7 @@ const xss = require('xss-clean');
 // //////////////////////////////////////////////////////////////////////////////
 //
 const userRouter = require('./routes/userRoutes');
+const guestUserRouter = require('./routes/guestUserRoutes');
 const devRoutes = require('./routes/devRoutes');
 // //////////////////////////////////////////////////////////////////////////////
 //
@@ -54,6 +55,7 @@ app.use(limiter);
 // routes
 
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/guestusers', guestUserRouter);
 app.use(`/api/v1/devroutes/${process.env.DEVROUTESKEY}`, devRoutes);
 
 ///////////////////////////////////////////////////////////////////////////////

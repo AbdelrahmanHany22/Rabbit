@@ -1,17 +1,20 @@
 const express = require("express");
-const shippingControllers = require('../controllers/shippingControllers');
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+const shippingControllers = require('../controllers/shippingControllers');
+const authControllers = require('../controllers/authController');
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 const router = express.Router();
 
 router.route('/')
-    .get(shippingControllers.getAllShipments)
-    .post(shippingControllers.createShipment);
+    .get(authControllers.protect, authControllers.restrictTo('admin'), shippingControllers.getAllShipments)
+    .post(authControllers.protect, shippingControllers.createShipment);
 
 router.route('/:id')
-    .get(shippingControllers.getShipment)
-    .patch(shippingControllers.updateShipmentData);
+    .get(authControllers.protect, authControllers.restrictTo(['user', 'admin']), shippingControllers.getShipment)
+    .patch(authControllers.protect, shippingControllers.updateShipmentData);
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////

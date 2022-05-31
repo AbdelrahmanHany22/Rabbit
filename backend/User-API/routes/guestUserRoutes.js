@@ -12,16 +12,16 @@ const router = express.Router();
 
 
 router.route('/')
-    .get(guestUserController.getAllGuestUsers);
+    .get(authController.protect, authController.restrictTo('admin'), guestUserController.getAllGuestUsers);
 
-router.route('/createguest')
+router.route(`${process.env.DEVROUTESKEY}/createguest`)
     .get(authController.createGuestUserAndSendToken);
 
 
 router.route('/:id')
     .get(guestUserController.getGuestUser)
     .patch(guestUserController.updateGuestUser)
-    .delete(guestUserController.updateGuestUser);
+    .delete(guestUserController.deleteGuestUser);
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////

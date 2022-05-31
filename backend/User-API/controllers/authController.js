@@ -199,7 +199,6 @@ const createAndSendTokenToGuestUser = (user, statusCode, res) => {
 };
 
 
-// TODO: TELL ABDO TO INTEGRATE HIS NOTIFICATION SYSTEM INTO HERE
 exports.createGuestUserAndSendToken = catchAsync(
     async (req, res, next) => {
 

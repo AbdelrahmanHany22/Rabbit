@@ -11,11 +11,11 @@ const authController = require('../controllers/authController');
 const router = express.Router();
 
 router.route('/')
-    .get(authController.protect, productController.getAllProducts);
+    .get(productController.getAllProducts);
 
 router.route('/:id')
-    .get(authController.protect, productController.getProduct)
-    .delete(authController.protect, productController.deleteProduct);
+    .get(productController.getProduct)
+    .delete(authController.protect, authController.restrictTo('admin'), productController.deleteProduct);
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 

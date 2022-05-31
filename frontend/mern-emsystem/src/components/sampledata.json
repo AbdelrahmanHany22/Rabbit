@@ -1,0 +1,28 @@
+{
+    "Products":[
+        {
+            "Name":"name",
+            "Category":"category",
+            "Description":"description",
+            "Image":"image"
+        }
+    ],
+    "Categories":[
+        "Vegetables",
+        "Fruits",
+        "Dairy Products"
+    ],
+    "CategoriesShown":["CategoryName1","CategoryName2","CategoryName3"],
+    "ProductsShown":[
+        [
+            "CategoryName",
+            {
+                "Name":"name",
+                "Price":"price",
+                "Description":"description",
+                "Image":"image"
+            }
+        ]
+    ]
+    
+}

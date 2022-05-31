@@ -1,17 +1,20 @@
 const express = require("express");
-const cartControllers = require('../controllers/cartController');
+/////////////////////////////////////////////////////////////////////////////////////////////
 
+
+const cartControllers = require('../controllers/cartController');
+const authController = require('../controllers/authController');
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 const router = express.Router();
 
 router.route('/')
-    .get(cartControllers.getAllCarts);
+    .get(authController.protect, authController.restrictTo('admin'), cartControllers.getAllCarts);
 
-router.route('/:userid')
-    .post(cartControllers.createCart)
-    .delete(cartControllers.deleteCart)
-    .get(cartControllers.getCart);
+router.route('/:userid') // when user without account creates new cart user is assigned
+    .post(authController.protect, authController.restrictTo('user'), cartControllers.createCart)
+    .delete(authController.protect, authController.restrictTo('user'), cartControllers.deleteCart)
+    .get(authController.protect, authController.restrictTo('user'), cartControllers.getCart);
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////

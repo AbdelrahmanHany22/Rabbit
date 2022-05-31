@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.footer-body{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    height: 30.8vh;
+    background-color: black;
+
+    font-size: 1.2vw;
+}
+
+.footer-redirect, .footer-company,.footer-links{
+    width: 30%;
+    margin-top: 7vh;
+}
+
+.footer-redirect{
+    justify-self: center;
+    align-self: center;
+}
+
+.company-title, .links-title{
+    font-weight: 600;
+
+    margin-bottom: 3.5vh;
+    color: white;
+}
+
+.hover, .hover:visited,.hover:active,.hover:link{
+    margin-left: 1vw;
+    color: #DCFD51;
+}
+
+.hover:hover{
+    background-color: #DCFD51;
+    color: black;
+}
+
+img{
+    width: 5vw;
+}
+
+.footer-bottom-redirects > a > img{
+    width: 2vw;
+    border-radius: 5px;
+    margin: 1vw;
+}
+
+
+.footer-top-redirects{
+    display: flex;
+    justify-content: center;
+}
+
+.footer-bottom-redirects{
+    display: flex;
+    justify-content: center;
+}
+
+
+.company-buttons{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.links-buttons{
+    display: flex;
+    flex-direction: column;
+}

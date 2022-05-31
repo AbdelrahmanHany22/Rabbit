@@ -1,0 +1,192 @@
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.categorypage-body{
+    
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+   width: 100%;
+   background-color: #061c15;
+
+    font-weight: 900;
+    
+    
+
+}
+
+.categorypage-link{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    border: 5px solid #dffe16;
+
+    width: 20vw;
+    margin: 2vh;
+
+    text-decoration: 0;
+
+    border-radius: 25px;
+}
+
+.categorypage-name, .categorypage-name:link, .categorypage-name:visited, .categorypage-name:active, .categorypage-name:hover{
+    font-size: 0.8vw;
+    padding-left: 1vw;
+    padding-bottom: 5.5vh;
+    z-index: 1;
+    color: #dffe16;
+    background-color: #124831;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+.categorypage-price{
+    font-size: 1.5vw;
+    text-align: left;
+    z-index: 1;
+    margin-top: 20vh;
+    padding-top: 5vh;
+    padding-left: 2vw;
+    padding-bottom: 1vw;
+    color: #dffe16;
+    background-color: #124831;
+
+
+}
+
+.categorypage-image{
+    align-self: center;
+    position: absolute;
+    margin-top: -20vh;
+    width: 20vw;
+    border-bottom:4px solid gray ;
+    height: 20vh;
+
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+.categorybutton-empty{
+
+    margin-top: 9%;
+    margin-left: 17%;
+   
+    border-radius: 50%;
+    width: 3.5vw;
+    height: 3.5vw;
+    border: none;
+    background-color: #dffe16;
+    font-size: 2vw;
+    color: #064f3b;
+    z-index:2;
+    position: absolute;
+}
+
+.categorycart-body{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-top: 9%;
+    margin-left: 10%;
+    
+    border-radius: 50px;
+    height: 3.5vw;
+    width: 10vw;
+    border: none;
+    background-color: #064f3b;
+    font-size: 2vw;
+    color: #fff;
+    z-index: 2;
+    position: absolute;
+}
+
+.categorycart-minus{
+    background-color: #064f3b;
+    border: none;
+    color: #dffe16;
+    font-size: 2.7vw;
+    padding-bottom: 0.4vw;
+    padding-left: 0.5vw;
+    border-radius: 50%;
+}
+.categorycart-plus{
+    background-color: #064f3b;
+    border: none;
+    color: #dffe16;
+    font-size: 2.7vw;    
+}
+
+@media only screen and (max-width: 1024px){
+    .categorypage-link{
+        height: 30vw;
+        width: 20vw;
+        margin: 0.5vh;
+        padding: 1.5vh;
+    }
+
+    .categorypage-image{
+        width: 25vw;
+        height: 15vw;
+        margin-top: -10vh;
+    }
+
+    .categorypage-name, .categorypage-name:link, .categorypage-name:visited, .categorypage-name:active, .categorypage-name:hover{
+        font-size: 1.5vw;
+        padding-bottom: 3vh;       
+        width: 25vw;
+        margin-left: -3vw;
+    }
+    .categorypage-price{
+        font-size: 3.5vw;
+        margin-top:8.5vh;
+        padding-top: 2vh;
+        padding-left: 2vw;
+        padding-bottom: 1vw;
+        width: 24vw;
+        margin-left: -3vw;
+    
+    
+    }
+
+    .categorybutton-empty{
+
+        margin-top: 17%;
+        margin-left: 20%;
+       
+        width: 6vw;
+        height: 6vw;
+        font-size: 5vw;
+    }
+    
+    .categorycart-body{
+    
+        margin-top: 17%;
+        margin-left: 7%;
+        
+        height: 6vw;
+        width: 20vw;
+        font-size: 5vw;
+    }
+
+    .categorycart-minus{
+        font-size: 3.5vw;
+    }
+    .categorycart-plus{
+        font-size: 3.5vw;    
+    }
+
+}
+
