@@ -22,18 +22,8 @@ export default function App() {
   const [address, setAddress] = useState('Tahrir Square ميدان التحرير, Tahrir Square, Cairo, Cairo 11, Egypt')
 
 
-  const Wrapper = ({children}) => {
-    const location = useLocation();
-    useLayoutEffect(() => {
-      document.documentElement.scrollTo(0, 0);
-    }, [location.pathname]);
-    return children
-  } 
-
-
   return (
     <Router>
-    <Wrapper>
 
       <Navbar />
 
@@ -47,12 +37,15 @@ export default function App() {
 
                 <Route path='/Product/:name' element={<ProductPage />} />
 
+
+
                 <Route path='/Payment' element={<Payment lng={lng} setLng={setLng} lat={lat} setLat={setLat} zoom={zoom} setZoom={setZoom} address={address}/>} />
 
         </Routes>
 
-        <Footer />
-    </Wrapper>
+      <Footer />
+
+
     </Router>
   )
 }

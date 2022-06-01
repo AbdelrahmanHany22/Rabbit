@@ -11,6 +11,8 @@ export default function Market({lng,setLng,lat,setLat,zoom,setZoom, address, set
 
   const [toggle, setToggle] = useState(false)
 
+  
+
   function toggleFunc(){
       setToggle(!toggle)
   }
