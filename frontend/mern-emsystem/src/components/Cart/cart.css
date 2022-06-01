@@ -1,0 +1,16 @@
+.cartpage-body{
+    height: 100%;
+    width: 100%;
+ 
+    overflow-y: scroll;
+}
+
+.cartpage-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    border: 2px solid lightgray;
+    padding: 3vw;
+    margin: 1vw;
+}

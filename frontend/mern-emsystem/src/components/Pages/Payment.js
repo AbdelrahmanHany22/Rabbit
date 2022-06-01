@@ -1,22 +1,38 @@
 import React from 'react'
 import './payment.css'
 import cod from '../images/cod.png'
+import Cart from '../Cart/Cart'
+import Map from '../SearchBar/Map'
+import mappin from '../images/map-pin.png'
 
-export default function Payment() {
+export default function Payment({lng,setLng,lat,setLat,zoom,setZoom, address}) {
   return (
     <div className='payment-body'>
 
         <div className='payment-details'>
 
             <div className='payment-cart'>
-                item
+                <Cart />
             </div>
 
-            <div className='payment-inputs'>
+            <div className='payment-info'>
 
-                <button className='payment-input'>MasterCard</button>
-                <button className='payment-input'>PayPal</button>
-                <button className='payment-input image'><img alt='' src={cod} width='40px' className='cod'/>Cash On Delivery</button>
+                <div className='payment-address'>
+
+                    <img alt='' src={mappin} className='payment-pin'/>
+
+                    <Map lng={lng} setLng={setLng} lat={lat} setLat={setLat} zoom={zoom} setZoom={setZoom} inter={false} style='payment'/>
+
+                    <p className='payment-text'>{address}</p>
+
+                </div>
+
+                <div className='payment-inputs'>
+
+                    <button className='payment-input'>mastercard</button>
+                    <button className='payment-input image'><img alt='' src={cod} width='40px' className='cod'/>Cash On Delivery</button>
+                
+                </div>
 
             </div>
         

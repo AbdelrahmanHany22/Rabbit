@@ -3,16 +3,22 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    max-width: 100vw;
+}
+
+.payment-info{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 31.5vw;
+    margin-right: 1vw;
 }
 
 .payment-inputs{
-    border-right: 2px solid lightgray;
     display: flex;
-    flex-direction: column;
-    width: 25%;
-    height: 31.5vw;
-
-
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
 }
 
 .payment-input{
@@ -22,7 +28,7 @@
 
 .payment-details{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     width: 100%;
@@ -49,9 +55,10 @@
 }
 
 .payment-cart{
-    width: 25%;
-    border-left: 2px solid lightgray;
+    display: flex;
+    width: 50%;
     height: 31.5vw;
+    margin: 1vw;
     
 }
 
@@ -60,19 +67,43 @@
     background-color: lightgray;
     height: 10vmax;
     font-size: 4vmax;
-    display: flex;
-    align-items: center;
-    align-self: flex-start;
+    padding-top: 2vh;
     padding-left: 10%;
     font-weight: 900;
 }
 
+.payment-map{
+    height: 35vh;
+    width: 47vw;
+    margin: 1vw;
+}
+
+.payment-pin{
+    position: absolute;
+    z-index: 1;
+    width: 2vw;
+    margin-top: 8%;
+    margin-left: 23%;
+   
+}
+
+.payment-sidebar{
+    display: none;
+}
+
+.payment-text{
+    padding: 1vw;
+    border-top: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+
+}
+
+
 @media only screen and (max-width: 1024px){
 
-    .payment-inputs, .payment-cart{
-        width: 32.5%;
+    .payment-info, .payment-cart{
+        width: 50%;
         height: 47vh;
-
     }
 
     .payment-input{
@@ -84,12 +115,12 @@
 
     .payment-body{
         height: 55vh;
-        justify-content: space-between;
     }
 
     .payment-details{
         height: 100%;
-        width: 120%;
+        max-width: 100%;
+        justify-content: space-between;
     }
 
     .cod{

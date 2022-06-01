@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import pin from '../images/pin.png'
 import mappin from '../images/map-pin.png'
 import Map from './Map'
@@ -19,8 +19,9 @@ export default function LocationCard({lng,setLng, lat,setLat, zoom, setZoom, add
         <div className='locationcard-map'>
 
           <img alt='' src={mappin} className='map-pin'/>
+          
 
-          <Map lng={lng} setLng={setLng} lat={lat} setLat={setLat} zoom={zoom} setZoom={setZoom}  />
+          <Map lng={lng} setLng={setLng} lat={lat} setLat={setLat} zoom={zoom} setZoom={setZoom} inter={true} style='location'/>
         
         </div>
 
