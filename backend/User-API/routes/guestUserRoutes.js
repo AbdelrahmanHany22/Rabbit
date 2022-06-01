@@ -4,6 +4,7 @@ const express = require("express");
 
 const guestUserController = require('./../controllers/guestUserController');
 const authController = require('./../controllers/authController');
+const userController = require('./../controllers/userController');
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -14,8 +15,13 @@ const router = express.Router();
 router.route('/')
     .get(authController.protect, authController.restrictTo('admin'), guestUserController.getAllGuestUsers);
 
-router.route(`${process.env.DEVROUTESKEY}/createguest`)
-    .get(authController.createGuestUserAndSendToken);
+
+router.route('/getcurrentuser')
+    .get(authController.protect, userController.getMe, guestUserController.getGuestUserBeforeNormalUser, userController.getUser);
+
+
+router.route(`/createguest`)
+    .post(authController.createGuestUserAndSendToken);
 
 
 router.route('/:id')

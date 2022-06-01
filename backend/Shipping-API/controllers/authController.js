@@ -22,10 +22,49 @@ exports.protect = catchAsync(async (req, res, next) => {
 
     // TODO
     try {
-        const user = await axios.get(`http://localhost:${process.env.DEVROUTESPORT}/api/v1/devroutes/${process.env.DEVROUTESKEY}/retrieveuser/${token}`);
+
+        let user = await axios.get(`http://localhost:${process.env.DEVROUTESPORT}/api/v1/devroutes/${process.env.DEVROUTESKEY}/retrieveuser/${token}`);
+
         req.user = user.data.user;
 
     } catch (e) {
+
+        return next();
+    }
+
+    // Grant accesses to protected route
+
+    next();
+});
+
+
+exports.protectGuest = catchAsync(async (req, res, next) => {
+
+    if (req.user) {
+        return next();
+    }
+
+
+    let token;
+
+    // 1) Getting token and checking if it exists
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+        token = req.headers.authorization.split(' ')[1];
+    }
+
+    if (!token) {
+        return next(new AppError('You are not logged in. Please log in to get access.', 401));
+    }
+
+    // TODO
+    try {
+
+        let user = await axios.get(`http://localhost:${process.env.DEVROUTESPORT}/api/v1/devroutes/${process.env.DEVROUTESKEY}/retrieveguestuser/${token}`);
+
+        req.user = user.data.user;
+
+    } catch (e) {
+
         return next(new AppError('You are not logged in. Please log in to get access.', 401));
     }
 

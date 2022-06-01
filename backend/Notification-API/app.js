@@ -1,33 +1,74 @@
 const express = require('express');
-const cors = require('cors');
-require('dotenv').config({path: '../Config.env'});
-const app = express();
-const mongoose = require('mongoose');
+const rateLimit = require('express-rate-limit');
+const upload = require('express-fileupload');
+const morgan = require('morgan');
 
-const usermodels = require('./models/notificationModels');
+// //////////////////////////////////////////////////////////////////////////////
+
+// security
+const helmet = require('helmet');
+const cors = require('cors');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+//
+// //////////////////////////////////////////////////////////////////////////////
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SENDGRIDAPIKEY);
+// //////////////////////////////////////////////////////////////////////////////
+
+const notificationRoutes = require('./routes/notificationRoutes');
+
+//// //////////////////////////////////////////////////////////////////////////////
+//
+const globalErrorHandler = require('./controllers/errorController');
+const AppError = require('./utils/appError');
+
 //////////////////////////////////////////////////////////////////////////////
 
+const app = express();
+// //////////////////////////////////////////////////////////////////////////////
 
-const uri = process.env.DATABASE_STRING;
-mongoose.connect(uri);
+app.use(express.json());
+app.use(morgan('dev'));
+app.use(cors());
+// // adds http headers for security
+app.use(helmet());
+// // against query selector injection attacks
+app.use(mongoSanitize());
+// // sanitize untrusted html
+app.use(xss());
+// // file uploads
+app.use(upload({
+    preserveExtension: true
+}));
 
-const connection = mongoose.connection;
-connection.once('open', () => {
-    console.log("MongoDB database connection established successfully");
+//////////////////////////////////////////////////////////////////////////////
+
+// limiting the number of api calls
+
+const limiter = rateLimit({
+    max: 100,
+    windowMS: 60 * 60 * 1000,
+    message: 'Too many requests from this IP Address, please try again in an hour'
+});
+app.use(limiter);
+
+////////////////////////////////////////////////////////////////////////////
+// routes
+
+app.use('/api/v1/notifications', notificationRoutes);
+
+///////////////////////////////////////////////////////////////////////////////
+
+// handle undefined routes
+app.all('*', (req, res, next) => {
+    next(new AppError(`Can't find ${req.originalUrl} on this server.`, 404));
 });
 
-
-//////////////////////////////////////////////////////////////////////////////
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-
-
-//////////////////////////////////////////////////////////////////////////////
-
-app.use('/api/notification', usermodels);
-//////////////////////////////////////////////////////////////////////////////
+app.use(globalErrorHandler);
 
 //////////////////////////////////////////////////////////////////////////////
 
 module.exports = app;
+
+//////////////////////////////////////////////////////////////////////////////

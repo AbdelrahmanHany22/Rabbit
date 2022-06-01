@@ -25,8 +25,8 @@ const guestUserSchema = mongoose.Schema({
     addressDescription: String,
     role: {
         type: String,
-        enum: ['user'],
-        default: 'user'
+        enum: ['guestuser'],
+        default: 'guestuser'
     },
 
     // The order id will be embedded here

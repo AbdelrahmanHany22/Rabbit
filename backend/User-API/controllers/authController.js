@@ -92,6 +92,7 @@ exports.protect = catchAsync(async (req, res, next) => {
         token = req.headers.authorization.split(' ')[1];
     }
 
+
     if (!token) {
         return next(new AppError('You are not logged in. Please log in to get access.', 401));
     }
@@ -99,20 +100,30 @@ exports.protect = catchAsync(async (req, res, next) => {
     // 2) Validate the token (Verification)
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
-    // 3) Check if the user still exists
-    const user = await User.findById(decoded.id);
-    if (!user) {
-        return next(new AppError('The user belonging to this token no longer exists', 401));
-    }
 
-    // 4) Check if user changed password after the token was issued (after token was issued)
-    if (user.changedPasswordAfterToken(decoded.iat)) {
-        return next(new AppError('User recently changed password. Please log in again.', 401));
+    // 3) Check if the user still exists
+    let user = await User.findById(decoded.id);
+    if (!user) {
+
+        user = await GuestUser.findById(decoded.id);
+
+        if (!user) {
+            return next(new AppError('The user belonging to this token no longer exists', 401));
+
+        }
+
+
+    } else {
+        // 4) Check if user changed password after the token was issued (after token was issued)
+        if (user.changedPasswordAfterToken(decoded.iat)) {
+            return next(new AppError('User recently changed password. Please log in again.', 401));
+        }
     }
 
 
     // Grant accesses to protected route
     req.user = user;
+
 
     next();
 });
@@ -179,24 +190,26 @@ exports.logout = (req, res) => {
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // guest user authentication
 
-const createAndSendTokenToGuestUser = (user, statusCode, res) => {
-    const token = signToken(user._id);
+const createAndSendTokenToGuestUser = catchAsync(
+    async (user, statusCode, res, req) => {
+        const token = signToken(user._id);
 
-    const cookieOptions = {
-        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
-        secure: true,
-    };
 
-    res.cookie('jwt', token, cookieOptions);
+        const cookieOptions = {
+            expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
+            secure: true,
+        };
 
-    res.status(statusCode).json({
-        status: 'success',
-        token,
-        data: {
-            user
-        }
+        res.cookie('jwt', token, cookieOptions);
+
+        res.status(statusCode).json({
+            status: 'success',
+            token,
+            data: {
+                user,
+            }
+        });
     });
-};
 
 
 exports.createGuestUserAndSendToken = catchAsync(
@@ -211,6 +224,6 @@ exports.createGuestUserAndSendToken = catchAsync(
         });
 
 
-        createAndSendTokenToGuestUser(newGuestUser, 201, res);
+        createAndSendTokenToGuestUser(newGuestUser, 201, res, req);
     }
 );

@@ -13,8 +13,8 @@ router.route('/')
     .post(authControllers.protect, shippingControllers.createShipment);
 
 router.route('/:id')
-    .get(authControllers.protect, authControllers.restrictTo(['user', 'admin']), shippingControllers.getShipment)
-    .patch(authControllers.protect, shippingControllers.updateShipmentData);
+    .get(authControllers.protect, authControllers.protectGuest, shippingControllers.getShipment)
+    .patch(authControllers.protect, authControllers.protectGuest, shippingControllers.updateOrderStatus);
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////

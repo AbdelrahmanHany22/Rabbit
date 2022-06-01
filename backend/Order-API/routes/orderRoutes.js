@@ -12,10 +12,10 @@ const router = express.Router();
 
 router.route('/')
     .get(authController.protect, authController.restrictTo('admin'), orderControllers.getAllOrders)
-    .post(authController.protect, authController.restrictTo('user'), orderControllers.createOrder);
+    .post(authController.protect, authController.protectGuest, orderControllers.createOrder);
 
 router.route('/:id')
-    .get(authController.protect, authController.restrictTo('user'),orderControllers.getOrder)
+    .get(orderControllers.getOrder)
     .patch(orderControllers.changeOrderStatus);
 
 

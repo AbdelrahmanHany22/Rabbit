@@ -10,12 +10,10 @@ const shipmentSchema = mongoose.Schema({
         ref: 'Order',
         required: true
     },
-    deliveryAgent: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'DeliveryAgent',
-        required: true
-    },
-    coordinatesOfCurrentLocation: [Number]
+    coordinatesOfCurrentLocation: {
+        type: [Number],
+        default: [29.95894164031607, 31.260577211060205]
+    }
 });
 
 //////////////////////////////////////////////////////////////////////////////

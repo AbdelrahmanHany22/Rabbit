@@ -11,6 +11,7 @@ const authController = require('./../controllers/authController');
 const router = express.Router();
 
 router.get('/retrieveuser/:usertoken', devController.protectDev);
+router.get('/retrieveguestuser/:usertoken', devController.protectDevGuest);
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
