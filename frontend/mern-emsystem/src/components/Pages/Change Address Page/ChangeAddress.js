@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import './changeaddress.css'
-import Map from '../SearchBar/Map'
+import Map from '../../SearchBar/Map'
 import { Link } from 'react-router-dom'
-import mappin from '../images/map-pin.png'
+import mappin from '../../images/map-pin.png'
 
 export default function ChangeAddress({lng,setLng,lat,setLat,zoom,setZoom, address, setAddress}) {
 

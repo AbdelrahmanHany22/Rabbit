@@ -1,18 +1,19 @@
 import React, { useLayoutEffect, useState } from 'react'
-import Navbar from './components/Navbar';
-import Market from './components/Pages/Market'
 import {
     BrowserRouter as Router,
     Routes,
     Route,
-    useLocation,
   } from "react-router-dom";
-import CategoryDetails from './components/Pages/CategoryDetails';
-import CategoryPage from './components/Pages/CategoryPage';
+
+import Navbar from './components/Navbar';
+import Market from './components/Pages/Market'
+import CategoryDetails from './components/Pages/Category Page/CategoryDetails';
 import Footer from './components/Footer/Footer';
-import ProductPage from './components/Pages/ProductPage';
-import Payment from './components/Pages/Payment';
-import ChangeAddress from './components/Pages/ChangeAddress';
+import Payment from './components/Pages/Payment Page/Payment';
+import ChangeAddress from './components/Pages/Change Address Page/ChangeAddress';
+import CategoryPage from './components/Pages/Category Page/CategoryPage';
+import ProductPage from './components/Pages/Product Page/ProductPage';
+import Reciept from './components/Pages/Reciept Page/Reciept';
 
 
 export default function App() {
@@ -41,6 +42,8 @@ export default function App() {
                 <Route path='/Change-Address' element={<ChangeAddress lng={lng} setLng={setLng} lat={lat} setLat={setLat} zoom={zoom} setZoom={setZoom} address={address} setAddress={setAddress}/>} />
 
                 <Route path='/Payment' element={<Payment lng={lng} setLng={setLng} lat={lat} setLat={setLat} zoom={zoom} setZoom={setZoom} address={address} />} />
+
+                <Route path='/Reciept' element={<Reciept address={address} />} />
 
         </Routes>
 

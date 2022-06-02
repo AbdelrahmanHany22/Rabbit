@@ -1,9 +1,9 @@
 import React from 'react'
 import './payment.css'
-import cod from '../images/cod.png'
-import Cart from '../Cart/Cart'
-import Map from '../SearchBar/Map'
-import mappin from '../images/map-pin.png'
+import cod from '../../images/cod.png'
+import Cart from '../../Cart/Cart'
+import Map from '../../SearchBar/Map'
+import mappin from '../../images/map-pin.png'
 import { Link } from 'react-router-dom'
 
 export default function Payment({lng,setLng,lat,setLat,zoom,setZoom, address}) {
@@ -36,7 +36,7 @@ export default function Payment({lng,setLng,lat,setLat,zoom,setZoom, address}) {
                 <div className='payment-inputs'>
 
                     <button className='payment-input'>mastercard</button>
-                    <button className='payment-input image'><img alt='' src={cod} width='40px' className='cod'/>Cash On Delivery</button>
+                    <Link to={'/Reciept'} className='payment-input image'><img alt='' src={cod} width='40px' className='cod'/>Cash On Delivery</Link>
                 
                 </div>
 

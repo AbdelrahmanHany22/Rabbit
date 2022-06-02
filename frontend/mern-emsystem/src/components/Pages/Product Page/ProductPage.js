@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import dataiyad from '../sample (1).json'
+import dataiyad from '../../sample (1).json'
 import './productpage.css'
 
 export default function ProductPage() {
