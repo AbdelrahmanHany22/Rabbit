@@ -5,3 +5,4 @@
 ./backend/Order-API/Config.env
 ./backend/Payment-API/Config.env
 ./backend/Shipping-API/Config.env
+!/backend/Notification-API/Config.env
