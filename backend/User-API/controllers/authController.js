@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const {promisify} = require('util');
 const crypto = require('crypto');
+const axios = require('axios').default;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -32,6 +33,7 @@ const createAndSendToken = (user, statusCode, res) => {
     // Remove password from output
     user.password = undefined;
 
+
     res.status(statusCode).json({
         status: 'success',
         token,
@@ -56,6 +58,17 @@ exports.signup = catchAsync(
             passwordChangedAt: req.body.passwordChangedAt,
             role: req.body.role
         });
+
+        try {
+
+            await axios.post(`http://localhost:${process.env.NOTIFICATIONAPIPORT}/api/v1/notifications/confirmaccount`, {
+                email: newUser.email
+            });
+
+        } catch (e) {
+
+            return next(new AppError('Error sending account confirmation.', 401));
+        }
 
 
         createAndSendToken(newUser, 201, res);

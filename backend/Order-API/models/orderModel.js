@@ -15,6 +15,10 @@ const orderSchema = mongoose.Schema({
         ref: 'Cart',
         required: true
     },
+    price: {
+        type: Number,
+        required: [true, 'An Order has to have a price']
+    },
     status: {
         type: String,
         default: 'CREATED',

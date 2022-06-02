@@ -9,8 +9,11 @@ const cartSchema = mongoose.Schema({
         ref: 'User',
         unique: true
     },
+    price: {
+        type: Number,
+        required: [true, 'A Cart has to have a price']
+    },
     products: []
-
 });
 
 //////////////////////////////////////////////////////////////////////////////

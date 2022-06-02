@@ -34,40 +34,44 @@ exports.startNewShipment = (shipmentID) => {
                 const order = await axios.get(`http://localhost:${process.env.ORDERSPORT}/api/v1/orders/${orderId}`);
 
 
-                switch (order.data.data.data.status) {
-                    case 'FULFILLED':
-                        scheduler.stopById(shipmentID);
-                        break;
-                    case 'CANCELED':
-                        scheduler.stopById(shipmentID);
-                        break;
-                    case 'CREATED':
-                        await axios.patch(`http://localhost:${process.env.ORDERSPORT}/api/v1/orders/${orderId}`,
-                            {
-                                status: 'PROCESSING'
-                            });
-                        break;
-                    case 'PROCESSING':
-                        await axios.patch(`http://localhost:${process.env.ORDERSPORT}/api/v1/orders/${orderId}`,
-                            {
-                                status: 'SHIPPING'
-                            });
-                        break;
-                    case 'SHIPPING':
-                        await axios.patch(`http://localhost:${process.env.ORDERSPORT}/api/v1/orders/${orderId}`,
-                            {
-                                status: 'FULFILLED'
-                            });
-                        break;
+                try {
+                    switch (order.data.data.data.status) {
+                        case 'FULFILLED':
+                            scheduler.stopById(shipmentID);
+                            break;
+                        case 'CANCELED':
+                            scheduler.stopById(shipmentID);
+                            break;
+                        case 'CREATED':
+                            await axios.patch(`http://localhost:${process.env.ORDERSPORT}/api/v1/orders/${orderId}`,
+                                {
+                                    status: 'PROCESSING'
+                                });
+                            break;
+                        case 'PROCESSING':
+                            await axios.patch(`http://localhost:${process.env.ORDERSPORT}/api/v1/orders/${orderId}`,
+                                {
+                                    status: 'SHIPPING'
+                                });
+                            break;
+                        case 'SHIPPING':
+                            await axios.patch(`http://localhost:${process.env.ORDERSPORT}/api/v1/orders/${orderId}`,
+                                {
+                                    status: 'FULFILLED'
+                                });
+                            break;
 
-                    default:
-                        scheduler.stopById(shipmentID);
-                        break;
+                        default:
+                            // scheduler.stopById(shipmentID);
+                            break;
+                    }
+                } catch (e) {
+
                 }
 
 
             } catch (e) {
-                return console.log('Error in task');
+                return console.log(e);
             }
 
 

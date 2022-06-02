@@ -16,15 +16,6 @@ process.on('uncaughtException', err => {
 
 //////////////////////////////////////////////////////////////////////////////
 
-const uri = process.env.DATABASE_STRING;
-mongoose.connect(uri);
-const connection = mongoose.connection;
-connection.once('open', () => {
-    console.log("MongoDB database connection established successfully");
-});
-
-//////////////////////////////////////////////////////////////////////////////
-
 
 const port = process.env.PORT;
 const server = app.listen(port, () => {

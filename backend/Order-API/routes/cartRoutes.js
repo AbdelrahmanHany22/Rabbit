@@ -16,7 +16,7 @@ router.route('/') // when user without account creates new cart user is assigned
 
 router.route('/:id') // when user without account creates new cart user is assigned
     .delete(authController.protect, authController.protectGuest, cartControllers.deleteCart)
-    .get(authController.protect, authController.protectGuest, cartControllers.getCart);
+    .get(cartControllers.getCart);
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////

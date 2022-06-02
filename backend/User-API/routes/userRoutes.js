@@ -15,6 +15,10 @@ router.post('/login', authController.login);
 router.get('/logout', authController.logout);
 router.get('/isloggedin/', authController.isLoggedIn);
 
+router.route('/:id')
+    .get(userController.getUser);
+
+
 router.use(authController.protect);
 
 router.get('/me', userController.getMe, userController.getUser);
@@ -29,7 +33,6 @@ router.route('/')
     .post(userController.createUser);
 
 router.route('/:id')
-    .get(userController.getUser)
     .patch(userController.updateUser)
     .delete(userController.deleteUser);
 
