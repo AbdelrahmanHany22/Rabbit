@@ -17,16 +17,17 @@ router.post("/pay", (req,res,next) =>{
     const idempotencykey= uuidv4();
 
     return stripe.customers.create({
-        email: token.email,
-        source: token
+        email: "boudyhany22@gmail.com",
+        source: req.body.token
     }).then(customer=>{
         stripe.charges.create({
-            amount: amount *100,
+            amount: 5000 *100,
             currency: 'egp',
             customer: customer.id,
-            recipt_email: token.email
+            receipt_email: "boudyhany22@gmail.com"
         },{idempotencykey})
     }).then(result =>{
+        console.log(result);
         res.status(200).json(result)
     }).catch(err =>{
         console.log(err);
