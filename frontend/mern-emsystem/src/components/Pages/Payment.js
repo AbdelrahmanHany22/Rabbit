@@ -4,6 +4,7 @@ import cod from '../images/cod.png'
 import Cart from '../Cart/Cart'
 import Map from '../SearchBar/Map'
 import mappin from '../images/map-pin.png'
+import { Link } from 'react-router-dom'
 
 export default function Payment({lng,setLng,lat,setLat,zoom,setZoom, address}) {
   return (
@@ -23,7 +24,12 @@ export default function Payment({lng,setLng,lat,setLat,zoom,setZoom, address}) {
 
                     <Map lng={lng} setLng={setLng} lat={lat} setLat={setLat} zoom={zoom} setZoom={setZoom} inter={false} style='payment'/>
 
-                    <p className='payment-text'>{address}</p>
+                    <div className='payment-text-button'>
+
+                        <p className='payment-text'>{address}</p>
+                        <Link to={'/Change-Address'} className='payment-button'>Change Address</Link>
+
+                    </div>
 
                 </div>
 

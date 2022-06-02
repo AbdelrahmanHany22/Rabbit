@@ -91,11 +91,23 @@
     display: none;
 }
 
-.payment-text{
+.payment-text-button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     padding: 1vw;
     border-top: 2px solid lightgray;
     border-bottom: 2px solid lightgray;
 
+}
+
+.payment-button{
+    background-color:#DFFE16 ;
+    color: #124831;
+    padding: 1vw;
+    border-radius: 15px;
+    font-weight: 900;
 }
 
 

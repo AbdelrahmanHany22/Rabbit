@@ -12,6 +12,7 @@ import CategoryPage from './components/Pages/CategoryPage';
 import Footer from './components/Footer/Footer';
 import ProductPage from './components/Pages/ProductPage';
 import Payment from './components/Pages/Payment';
+import ChangeAddress from './components/Pages/ChangeAddress';
 
 
 export default function App() {
@@ -37,9 +38,9 @@ export default function App() {
 
                 <Route path='/Product/:name' element={<ProductPage />} />
 
+                <Route path='/Change-Address' element={<ChangeAddress lng={lng} setLng={setLng} lat={lat} setLat={setLat} zoom={zoom} setZoom={setZoom} address={address} setAddress={setAddress}/>} />
 
-
-                <Route path='/Payment' element={<Payment lng={lng} setLng={setLng} lat={lat} setLat={setLat} zoom={zoom} setZoom={setZoom} address={address}/>} />
+                <Route path='/Payment' element={<Payment lng={lng} setLng={setLng} lat={lat} setLat={setLat} zoom={zoom} setZoom={setZoom} address={address} />} />
 
         </Routes>
 

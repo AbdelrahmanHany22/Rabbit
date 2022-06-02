@@ -47,6 +47,10 @@ function Map({lng,setLng, lat,setLat, zoom, setZoom,inter,style}) {
       css = 'map-body'
       sidebar = 'sidebar'
 
+    } else if (style == 'change'){
+
+      css = 'change-map'
+      sidebar = 'change-sidebar'
     }
 
     return (
