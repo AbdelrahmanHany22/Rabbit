@@ -23,7 +23,7 @@ export default function Navbar() {
               <div className='navsearch'>
                 <input type={'text'} className='navbar-searchbar' />
               </div>
-              <img className='cart' alt='' width='35px' src={cart}/>
+              <Link to={'/Payment'}><img className='cart' alt='' width='35px' src={cart}/></Link>
               <Link to={'/'} className='navbar-link'>Home</Link>
               <a href={'https://www.rabbitmart.com/rabbit-blog/'} className='navbar-link'>Our Blog</a>
               <a href={'https://www.rabbitmart.com/rabbit-values/'} className='navbar-link'>Our Values</a>

@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import './categorypage.css'
 import CategoryPageProducts from './CategoryPageProducts'
-import dataiyad from '../sample (1).json'
+import dataiyad from '../../sample (1).json'
 
 export default function CategoryPage() {
 

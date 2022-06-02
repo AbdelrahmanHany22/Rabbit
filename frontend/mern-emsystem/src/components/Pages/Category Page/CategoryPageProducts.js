@@ -41,7 +41,7 @@ export default function CategoryPageProducts({item}) {
     {empty?(<button className='categorybutton-empty' onClick={toggle}>+</button>):(Cart)}
 
     <Link className='categorypage-link' to={`/Product/${item.name}`}>
-              <img className='categorypage-image' alt='' width='20px' src={item.picture} />
+              <img className='categorypage-image' alt='' src={item.picture} />
               <div className='categorypage-price'>{item.price} EGP</div>
               <div className='categorypage-name'>{item.name}</div>
     </Link>

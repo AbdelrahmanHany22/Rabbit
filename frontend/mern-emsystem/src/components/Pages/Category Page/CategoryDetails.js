@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import sample from '../sample (1).json'
+import sample from '../../sample (1).json'
 
 export default function CategoryDetails() {
 

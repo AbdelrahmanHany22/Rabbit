@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import Categories from '../Categories/Categories';
 import LocationCard from '../SearchBar/LocationCard';
 import SearchBar from '../SearchBar/SearchBar';
@@ -7,23 +7,21 @@ import Products from '../Products/Products';
 import BootCarousel from '../Carousel/BootCarousel'
 import MobileApp from '../MobileApp/MobileApp';
 
-export default function App() {
+export default function Market({lng,setLng,lat,setLat,zoom,setZoom, address, setAddress}) {
 
   const [toggle, setToggle] = useState(false)
+
+  
 
   function toggleFunc(){
       setToggle(!toggle)
   }
   
-  const [lng, setLng] = useState(31.2355);
-  const [lat, setLat] = useState(30.0444);
-  const [zoom, setZoom] = useState(15);
-  const [address, setAddress] = useState('Tahrir Square ميدان التحرير, Tahrir Square, Cairo, Cairo 11, Egypt')
+  
   const [togglesearch,setToggleSearch] = useState(false)
 
   const HandleSubmit = (e) => {
     e.preventDefault()
-    console.log(togglesearch);
     setToggleSearch(!togglesearch)
 
   }
@@ -47,12 +45,11 @@ export default function App() {
     .then((res) => res.json())
     .then((data) => {
       const center = data.features[0].center
+
       setLng(center[0])
       setLat(center[1])
 
     })
-
-
   },[togglesearch])
   
   

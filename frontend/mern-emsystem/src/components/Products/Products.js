@@ -6,14 +6,13 @@ import dataiyad from '../sample (1).json'
 import ProductItem from './ProductItem'
 
 export default function Products() {
-    
+
     const datajsonkitchen = dataiyad.map(item => {
         if(item.category.toLowerCase() == 'kitchen consumables'){
         return(
             <ProductItem item={item}/>
         )}
     })
-
     const datajsonbeverages = dataiyad.map(item => {
         if(item.category.toLowerCase() == 'beverages'){
         return(
