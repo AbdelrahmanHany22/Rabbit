@@ -10,7 +10,7 @@ const authController = require("../controllers/authController");
 const router = express.Router();
 
 router.route('/update-inventory')
-    .post(authController.protect, authController.restrictTo('admin'), inventoryController.updateInventory);
+    .post(inventoryController.updateInventory);
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////

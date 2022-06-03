@@ -15,7 +15,7 @@ router.route('/')
 
 router.route('/:id')
     .get(productController.getProduct)
-    .delete(authController.protect, authController.restrictTo('admin'), productController.deleteProduct);
+    .delete(productController.deleteProduct);
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
