@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width =device-width, initial-scale=1.0">
+    <title>Rabbit Dashboard</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <script src="https://kit.fontawesome.com/6fc55aebdf.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    
+</head>
+
+<body>
+    <section id="menu">
+        <div class="logo">
+            <img src="Rabbit.jpg" alt="">
+            <h2>Rabbit</h2>
+        </div>
+
+        <div class="items">
+            <li><i class="fa-solid fa-chart-pie"></i><a href="#">Dashboard</a></li>
+            <li><i class="fa-solid fa-basket-shopping"></i><a href="#">Products</a></li>
+            <li><i class="fa-solid fa-truck"></i><a href="#">Delivery</a></li>
+            <li><i class="fa-solid fa-user"></i><a href="#">User Activity</a></li>
+            <li><i class="fa-solid fa-table"></i><a href="#">Tables</a></li>
+            <li><i class="fa-solid fa-money-bills"></i><a href="#">Earnings</a></li>
+        </div>
+    </section>
+
+    <section id="interface">
+        <div class="navigation">
+            <div class="n1">
+                <div>
+                    <i id="menu-button" class="fa-solid fa-bars"></i>
+                </div>
+                <div class="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+            </div>
+
+            <div class="profile">
+                <i class="fa-solid fa-bell"></i>
+                <img src="admin1.png" alt="">
+            </div>
+        </div>
+
+        <h3 class="i-name">
+            Dashboard
+        </h3>
+
+        <div class="values">
+            <div class="val-box">
+                <i class="fa-solid fa-users"></i>
+                <div>
+                    <h3>8,267</h3>
+                    <span>New Users</span>
+                </div>
+            </div>
+            <div class="val-box">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <div>
+                    <h3>99,463</h3>
+                    <span>Orders Made</span>
+                </div>
+            </div>
+            <div class="val-box">
+                <i class="fa-solid fa-carrot"></i>
+                <div>
+                    <h3>370,453</h3>
+                    <span>Products Sold</span>
+                </div>
+            </div>
+            <div class="val-box">
+                <i class="fa-solid fa-sterling-sign"></i>
+                <div>
+                    <h3>1,776,376£</h3>
+                    <span>This Month</span>
+                </div>
+            </div>
+        </div>
+        <div class="board">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <td>Product</td>
+                        <td>Category </td>
+                        <td>Price</td>
+                        <td>Availability</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="products">
+                            <img src="oreo.jpg" alt="">
+                            <div class="product description">
+                                <h5>Double Stuf Oreo</h5>
+                                <p>Double Stuf Oreo cookies Family pack size</p>
+                            </div>
+                        </td>
+                        <td class="product-category">
+                            <p>Cookies and Biscuits</p>
+                        </td>
+                        <td class="Price"><p>50egp</p></td>
+                        <td class="Availability"><p>in stock</p></td>
+                        <td class="Delete"><a href="#">Delete</a></td>
+                    </tr>
+                    <tr>
+                        <td class="products">
+                            <img src="Lays.jpg" alt="">
+                            <div class="product description">
+                                <h5>Lays Chips Salt</h5>
+                                <p>Lays Salt flavor party size</p>
+                            </div>
+                        </td>
+                        <td class="product-category">
+                            <p>Chips and Crackers</p>
+                        </td>
+                        <td class="Price"><p>25egp</p></td>
+                        <td class="Availability"><p>in stock</p></td>
+                        <td class="Delete"><a href="#">Delete</a></td>
+                    </tr>
+                    <tr>
+                        <td class="products">
+                            <img src="shaving_gel.jpg" alt="">
+                            <div class="product description">
+                                <h5>Gillete Shaving Gel</h5>
+                                <p>500ml</p>
+                            </div>
+                        </td>
+                        <td class="product-category">
+                            <p>Personal Care</p>
+                        </td>
+                        <td class="Price"><p>75egp</p></td>
+                        <td class="Availability"><p>in stock</p></td>
+                        <td class="Delete"><a href="#">Delete</a></td>
+                    </tr>
+                    <tr>
+                        <td class="products">
+                            <img src="gouda.jpg" alt="">
+                            <div class="product description">
+                                <h5>Gouda Cheese</h5>
+                                <p>100g</p>
+                            </div>
+                        </td>
+                        <td class="product-category">
+                            <p>Dairy</p>
+                        </td>
+                        <td class="Price"><p>13egp</p></td>
+                        <td class="Availability"><p>in stock</p></td>
+                        <td class="Delete"><a href="#">Delete</a></td>
+                    </tr>
+                    <tr>
+                        <td class="products">
+                            <img src="flat_bread.jpg" alt="">
+                            <div class="product description">
+                                <h5>Dina Paninette White Bread Wraps</h5>
+                                <p>5 per pack</p>
+                            </div>
+                        </td>
+                        <td class="product-category">
+                            <p>Bakery</p>
+                        </td>
+                        <td class="Price"><p>20egp</p></td>
+                        <td class="Availability"><p>in stock</p></td>
+                        <td class="Delete"><a href="#">Delete</a></td>
+                    </tr>
+                    <tr>
+                        <td class="products">
+                            <img src="showergel.jpg" alt="">
+                            <div class="product description">
+                                <h5>Dove Restoring Care SHower Gel</h5>
+                                <p>500ml</p>
+                            </div>
+                        </td>
+                        <td class="product-category">
+                            <p>Personal Care</p>
+                        </td>
+                        <td class="Price"><p>99egp</p></td>
+                        <td class="Availability"><p>in stock</p></td>
+                        <td class="Delete"><a href="#">Delete</a></td>
+                    </tr>
+                    <tr>
+                        <td class="products">
+                            <img src="dettol.jpg" alt="">
+                            <div class="product description">
+                                <h5>Dettol Antiseptic Disinfectant</h5>
+                                <p>500ml</p>
+                            </div>
+                        </td>
+                        <td class="product-category">
+                            <p>Household</p>
+                        </td>
+                        <td class="Price"><p>99.5egp</p></td>
+                        <td class="Availability"><p>in stock</p></td>
+                        <td class="Delete"><a href="#">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+        $('#menu-button').click(function() {
+            $("#menu").toggleClass("active");
+        })
+    </script>
+    
+</body>
+</html>
