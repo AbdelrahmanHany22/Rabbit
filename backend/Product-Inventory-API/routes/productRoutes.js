@@ -17,6 +17,10 @@ router.route('/:id')
     .get(productController.getProduct)
     .delete(productController.deleteProduct);
 
+router.route('/match/:chars')
+    .get(productController.getBestFiveResults);
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 module.exports = router;
