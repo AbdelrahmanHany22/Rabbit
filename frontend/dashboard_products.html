@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width =device-width, initial-scale=1.0">
+    <title>Rabbit Dashboard</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <script src="https://kit.fontawesome.com/6fc55aebdf.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    
+</head>
+
+<body>
+    <section id="menu">
+        <div class="logo">
+            <img src="Rabbit.jpg" alt="">
+            <h2>Rabbit</h2>
+        </div>
+
+        <div class="items">
+            <li><i class="fa-solid fa-chart-pie"></i><a href="#">Dashboard</a></li>
+            <li><i class="fa-solid fa-basket-shopping"></i><a href="#">Products</a></li>
+        </div>
+    </section>
+
+    <section id="interface">
+        <div class="navigation">
+            <div class="n1">
+                <div>
+                    <i id="menu-button" class="fa-solid fa-bars"></i>
+                </div>
+                <div class="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+            </div>
+
+            <div class="profile">
+                <i class="fa-solid fa-bell"></i>
+                <img src="admin1.png" alt="">
+            </div>
+        </div>
+
+        <h3 class="i-name">
+            Dashboard
+        </h3>
+
+        
+      
+
+    </section>
+
+    <script>
+        $('#menu-button').click(function() {
+            $("#menu").toggleClass("active");
+        })
+    </script>
+    
+</body>
+</html>
