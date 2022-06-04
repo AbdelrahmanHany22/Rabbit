@@ -1,0 +1,285 @@
+.locationcard-body{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top:10vh;
+    left: 25vw;
+    box-shadow: 2px 2px 80px 0px rgba(0,0,0,0.75);
+    border: 3px solid #ffffff;
+    border-radius: 25px;
+    z-index: 1;
+}
+
+.locationcard-header{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+    align-items: center;
+    background-color: #124831;
+    color: #DFFE16;
+    font-weight: 900;
+    font-size: 1.6rem;
+    height: 10vh;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    position: relative;
+}
+
+.locationcard-title{
+    margin-right: 11vw;
+    margin-top: 1.5%;
+    font-size: 2.5vw;
+    position: absolute;
+}
+
+.locationcard-close{
+    margin-top: 1.5%;
+
+    margin-right: 5%;
+}
+
+
+.locationcard-close:hover{
+    color: #bbd415;
+}
+
+.locationcard-footer{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    background-color: #ffffff;
+    height: 20vh;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+}
+
+.footer-address{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 30vw;
+    font-weight: 500;
+    font-size: 1rem;
+    height: 10vh;
+
+}
+
+.address-img{
+    width: 1.2vw;
+}
+
+.footer-button{
+    border: none;
+    background-color: #124831;
+    color: #DFFE16;
+    font-weight: 900;
+    font-size: 1.6rem;
+    padding: 10px;
+    padding-left: 8vw;
+    padding-right: 8vw;
+    border-radius: 3vw;
+}
+
+.footer-button:active{
+    background-color: #061C15;
+}
+
+
+.map-container {
+    height: 100%;
+   }
+   
+ .sidebar {
+     background-color: rgba(35, 55, 75, 0.9);
+     color: #fff;
+     padding: 6px 12px;
+     font-family: monospace;
+     z-index: 1;
+     position: absolute;
+     top: 0;
+     left: 0;
+     margin: 12px;
+     border-radius: 4px;
+ }
+ 
+ .map-body{
+     width: 50vw;
+     height: 50vh;
+     position: relative;
+ }
+
+ .searchbar-body{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    align-self: center;
+    background-color: #061C15;
+    height: 20vh;
+    width: 100%;
+
+}
+
+.searchbar-button{
+    border: none;
+    font-size: 1.5vw;
+    background-color: white;
+    resize: none;
+    color: rgb(0, 0, 0);
+    height: 60%;
+    width: 83%;
+    border-radius: 15px;
+    border-top-left-radius: 10;
+    border-bottom-left-radius: 01;
+    margin-right: -2vw;
+    position: relative;
+    z-index: 0;
+    padding-left: 5vw;
+}
+
+
+.searchbar-button:focus{
+    outline: none;
+}
+
+.searchbar-submit{
+    z-index: 1;
+    background-color: #DFFE16;
+    color: #124831;
+    width: 10%;
+    font-weight: 900;
+    font-size: 2vw;
+    border: none;
+    border-radius: 15px;
+    height: 60%;
+    border-bottom-right-radius: 10;
+    border-top-right-radius: 10;
+    margin-left: -2vw;
+
+}
+
+.searchbar-submit:active{
+    background-color: #bbd415;
+}
+
+.search{
+    position: absolute;
+    margin-left: 55vw;
+
+    width:3vw;
+
+    opacity: 1;
+}
+
+.search:hover{
+    opacity: 0;
+}
+
+.placeholder{
+    position: absolute;
+    margin-left: 55vw;
+    width:3vw;
+
+    opacity: 0;
+}
+
+.placeholder:hover{
+    opacity: 1;
+}
+
+.locationcard-map{
+    display:flex ;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.map-pin{
+    position: absolute;
+    z-index: 2;
+    width:2vw;
+    margin-bottom: 2vw;
+}
+
+@media only screen and (max-width: 1024px){
+
+    .searchbar-body{
+        height: 10vh;
+        width: 96%;
+    }
+
+    .searchbar-submit{
+        margin-left: -6vw;
+
+        font-size: 4vw;
+        width: 20%;
+    }
+
+    .search, .placeholder{
+        margin-left: 40vw;
+        width: 6vw;
+    }
+
+    .searchbar-button{
+        font-size: 1.9vw;
+    }
+
+    .locationcard-body{
+        top: 5vh;
+        left: 5vw;
+    }
+
+    .locationcard-header{
+        height: 5vh;
+    }
+
+    .locationcard-footer{
+        height:10vh;
+    }
+
+    .map-body{
+        width: 90vw;
+        height: 30vh;
+    }
+
+    .map-container{
+        width: 100%;
+    }
+
+    .map-pin{
+        width: 6vw;
+    }
+
+    .sidebar{
+        font-size: 2.5vw;
+    }
+
+    .footer-address{
+        font-size: 2vw;
+        max-height: 5vh;
+        min-width: 100%;
+        
+    }
+
+    .address-img{
+        width: 4vw;
+    }
+
+    .footer-button{
+        font-size: 2vw;
+        padding: 5px;
+        padding-left: 8vw;
+        padding-right: 8vw;
+        border-radius: 3vw;
+    }
+
+    .locationcard-title{
+        margin-right: 18vw;
+        margin-top: 1.5%;
+        font-size: 6vw;
+        position: absolute;
+    }
+
+}
