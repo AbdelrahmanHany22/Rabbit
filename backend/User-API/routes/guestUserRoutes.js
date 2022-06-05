@@ -13,7 +13,7 @@ const router = express.Router();
 
 
 router.route('/')
-    .get(authController.protect, authController.restrictTo('admin'), guestUserController.getAllGuestUsers);
+    .get(guestUserController.getAllGuestUsers);
 
 
 router.route('/getcurrentuser')

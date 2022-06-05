@@ -23,6 +23,10 @@ const orderSchema = mongoose.Schema({
         type: String,
         default: 'CREATED',
         enum: ['CREATED', 'PROCESSING', 'SHIPPING', 'FULFILLED', 'CANCELED'],
+    },
+    date: {
+        type: String,
+        default: Date.now().toLocaleString('en-US')
     }
 
 });

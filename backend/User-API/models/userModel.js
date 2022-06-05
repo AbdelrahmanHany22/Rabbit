@@ -55,12 +55,12 @@ const userSchema = mongoose.Schema({
         select: false,
     },
     // The order ids will be embedded here
-    orderIds: [
-        {
-            type: mongoose.Schema.ObjectId,
-            ref: 'Order'
-        }
-    ],
+    // orderIds: [
+    //     {
+    //         type: mongoose.Schema.ObjectId,
+    //         ref: 'Order'
+    //     }
+    // ],
 
 });
 

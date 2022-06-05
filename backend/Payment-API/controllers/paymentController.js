@@ -28,7 +28,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
         line_items: [
             {
                 name: `Cart: ${cart.data.data.data._id}`,
-                amount: cart.data.data.data.price * 100,
+                amount: Math.round(cart.data.data.data.price * 100),
                 currency: 'egp',
                 quantity: 1
 

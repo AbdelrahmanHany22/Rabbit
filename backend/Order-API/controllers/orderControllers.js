@@ -1,4 +1,5 @@
 const Order = require('../models/orderModel');
+const Cart = require('../models/cartModel');
 const generalController = require('./generalControllers');
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
@@ -102,7 +103,56 @@ exports.changeOrderStatus = catchAsync(
             }
         });
 
-    })
-;
+    });
+
+
+exports.getUserOrders = catchAsync(async (req, res, next) => {
+
+    let token;
+
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+        token = req.headers.authorization.split(' ')[1];
+    }
+
+    if (!token) {
+        return next(new AppError('You are not logged in. Please log in to get access.', 401));
+    }
+
+    try {
+
+        let user = await axios.get(`http://localhost:${process.env.DEVROUTESPORT}/api/v1/devroutes/${process.env.DEVROUTESKEY}/retrieveuser/${token}`);
+        req.user = user.data.user;
+
+        const orderIds = user.orderIds;
+
+        let orders = await Order.find({'user': user.data.user._id});
+
+
+        let result = [];
+        for (let order of orders) {
+            let products = await Cart.findById(order.cart.valueOf());
+            if (products !== null) {
+                order = order.toObject();
+                order.products = products.products;
+                result.push(order);
+            }
+        }
+
+
+        res.status(200).json({
+            status: 'success',
+            orders: result,
+
+
+        });
+
+
+    } catch (e) {
+
+        return next(new AppError('Error getting user Orders.', 500));
+    }
+
+
+});
 
 /////////////////////////////////////////////////////////////////////////////////////////////
