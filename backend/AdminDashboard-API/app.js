@@ -1,6 +1,5 @@
 const express = require('express');
 const rateLimit = require('express-rate-limit');
-const upload = require('express-fileupload');
 const morgan = require('morgan');
 
 // //////////////////////////////////////////////////////////////////////////////
@@ -12,11 +11,10 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 //
 // //////////////////////////////////////////////////////////////////////////////
-//
 
+const predictionsRouter = require('./routes/PredictionsForAssociationsBetweenProducts');
 // //////////////////////////////////////////////////////////////////////////////
 //
-const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
 
 //////////////////////////////////////////////////////////////////////////////
@@ -33,10 +31,6 @@ app.use(helmet());
 app.use(mongoSanitize());
 // // sanitize untrusted html
 app.use(xss());
-// // file uploads
-app.use(upload({
-    preserveExtension: true
-}));
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -52,6 +46,8 @@ app.use(limiter);
 ////////////////////////////////////////////////////////////////////////////
 // routes
 
+app.use('/api/v1/predictions', predictionsRouter);
+
 ///////////////////////////////////////////////////////////////////////////////
 
 // handle undefined routes
@@ -59,7 +55,6 @@ app.all('*', (req, res, next) => {
     next(new AppError(`Can't find ${req.originalUrl} on this server.`, 404));
 });
 
-app.use(globalErrorHandler);
 
 //////////////////////////////////////////////////////////////////////////////
 

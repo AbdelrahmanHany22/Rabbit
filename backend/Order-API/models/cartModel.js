@@ -5,9 +5,9 @@ const mongoose = require('mongoose');
 
 const cartSchema = mongoose.Schema({
     user: {
+
         type: mongoose.Schema.ObjectId,
         ref: 'User',
-        unique: true
     },
     price: {
         type: Number,

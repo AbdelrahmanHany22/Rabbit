@@ -94,7 +94,7 @@ exports.getAll = Model => catchAsync(
         //     };
         // }
 
-        const features = new APIFeatures(Model.find(filter), req.query).filter().sort().limitFields().paginate();
+        const features = new APIFeatures(Model.find(filter), req.query).filter().sort();
         const docs = await features.query;
 
 
