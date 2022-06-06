@@ -110,6 +110,12 @@
     font-weight: 900;
 }
 
+.payment-text{
+    font-size: 1vw;
+    width: 35vw;
+    overflow-y: scroll;
+}
+
 
 @media only screen and (max-width: 1024px){
 

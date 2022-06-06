@@ -1,28 +1,90 @@
-import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
-import dataiyad from '../../sample (1).json'
+import React, { useEffect, useState } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
 import './productpage.css'
 
 export default function ProductPage() {
 
+
     const [number, setNumber] = useState(0)
 
-    function add(){
-        setNumber(number+1)
-    }
-    function subtract(){
-        if(number != 0){
-            setNumber(number-1)
-        }else{
-            setNumber(0)
+    const [data, setData] = useState(null);
+
+    const { id } = useParams()
+
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000/api/v1/products")
+     .then((response) => response.json())
+     .then(datatest => {
+
+       if(datatest !== undefined){
+       setData(datatest.data.data);
+       
+      }
+      
+     })
+
+    
+   }, []);
+
+    if(data !== null){
+
+
+    function howManyItems(idOfItemYouWantToKnowTheNumberOf ){
+
+        let returnCart = JSON.parse(localStorage.getItem('Cart'))
+    
+        let numOfOcurrences = 0;
+        returnCart.map(x => { 
+                if(x.id === idOfItemYouWantToKnowTheNumberOf){
+                    numOfOcurrences++
+                    }
+            });
+    
+        return numOfOcurrences
+    
         }
-    }
+    
+    
+    function addItemAndGetNumberOfOccurences (NewObject){
+    
+        let returnCart = JSON.parse(localStorage.getItem('Cart'))
+    
+        returnCart.push(NewObject)
+    
+        
+        localStorage.setItem("Cart", JSON.stringify(returnCart))
+    
+    
+    
+    
+        setNumber( howManyItems(NewObject.id) )
+    
+    
+        }
+    
+    
+    
+    
+    function removeItemAndGetNumberOfOccurences (idOfItemYouWantToKnowTheNumberOf ){
+        let returnCart = JSON.parse(localStorage.getItem('Cart'))
+    
+        var idx = returnCart.findIndex(p => p.id===idOfItemYouWantToKnowTheNumberOf)
 
-    const { name } = useParams()
+        returnCart.splice(idx,1)
+        
+    
+        localStorage.setItem("Cart", JSON.stringify(returnCart))
+    
+        
+        setNumber( howManyItems(idOfItemYouWantToKnowTheNumberOf ) )
+    
+        }
 
-    const data = dataiyad.map(item => {
-        console.log(item.name.toLowerCase());
-        if(item.name.toLowerCase() == name.toLowerCase()){
+    
+    const component = data.map(item => {
+
+        if(item.id == id){
         return(
             <div className='productpage-item'>
                 <img alt='' src={item.picture} className='product-image'/>
@@ -30,11 +92,11 @@ export default function ProductPage() {
                 <div className='item-name'>{item.name}</div>
                 
                 <div className='price-body'>
-                    <div className='item-price'>{item.price}</div>
+                    <div className='item-price'>{item.price} EGP </div>
                     <div className='price-buttons'>
-                        <button className='item-button' onClick={subtract} >-</button>
-                        {number}
-                        <button className='item-button' onClick={add} >+</button>
+                        <button className='item-button' onClick={() => removeItemAndGetNumberOfOccurences(id)} >-</button>
+                            {howManyItems(id)}
+                        <button className='item-button' onClick={() => addItemAndGetNumberOfOccurences({id:id,name:item.name})} >+</button>
                     </div>
                 </div>
                 
@@ -44,7 +106,8 @@ export default function ProductPage() {
 
   return (
     <div className='productpage-body'>
-        {data}
+        {component}
     </div>
   )
+   }
 }

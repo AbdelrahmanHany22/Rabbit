@@ -1,5 +1,4 @@
-import React from 'react'
-import CategoriesDataOuter from '../sample (1).json'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -26,8 +25,27 @@ export default function Categories() {
       items: 4
     }
   };
+
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000/api/v1/products")
+     .then((response) => response.json())
+     .then(datatest => {
+
+       if(datatest !== undefined){
+       setData(datatest.data.data);
+       
+      }
+      
+     })
+
+    
+   }, []);
+ 
+   if(data !== null){
   
-  const array = CategoriesDataOuter.map(item => {
+  const array = data.map(item => {
     return(
       item.category
     )
@@ -36,7 +54,7 @@ export default function Categories() {
   const categories = [...new Set(array)];
 
 
-  const data = categories.slice(0,6).map(value => {
+  const component = categories.slice(0,6).map(value => {
     return (
 
     <Link to={`/CategoryPage/${value}`} className='categories-item'>
@@ -55,10 +73,11 @@ export default function Categories() {
         infinite={false}
         autoPlaySpeed={1000000}
         >
-          {data}
+          {component}
           <Link className='categories-item categories-carousel' to='/All-Categories'>Show All Categories</Link>
             
       </Carousel>
     </div>
   )
+   }
 }

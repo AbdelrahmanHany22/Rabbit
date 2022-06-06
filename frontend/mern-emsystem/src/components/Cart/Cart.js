@@ -1,11 +1,29 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import iyaddata from '../sample (1).json'
+import React, { useEffect, useState } from 'react'
+
 import './cart.css'
 
 export default function Cart() {
 
-    const data = iyaddata.map(item => {
+    const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000/api/v1/products")
+     .then((response) => response.json())
+     .then(datatest => {
+
+       if(datatest !== undefined){
+       setData(datatest.data.data);
+       
+      }
+      
+     })
+
+    
+   }, []);
+ 
+   if(data !== null){
+
+    const component = data.map(item => {
         return(
             <div className='cartpage-item'>
                 <img alt='' src={item.picture} />
@@ -20,11 +38,12 @@ export default function Cart() {
 
         <div className='cartpage-card'>
 
-            {data}
+            {component}
 
         </div>
 
 
     </div>
   )
+   }
 }
