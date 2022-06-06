@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import cart from './images/cart.png'
 import user from './images/user.png'
-import SignUp from './SignUp/SignUp'
+import Login from './Login/Login'
 import './navbar.css'
 
 export default function Navbar() {
@@ -33,7 +33,7 @@ export default function Navbar() {
             
             </div>
             
-            {toggle && <SignUp toggle={toggleFunc}/>}
+            {toggle && <Login toggle={toggleFunc}/>}
         
     </div>
   )

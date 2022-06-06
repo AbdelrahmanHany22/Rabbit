@@ -1,10 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './reciept.css'
-import dataiyad from '../../sample (1).json'
 
 export default function Reciept({address}) {
 
-    const data = dataiyad.map(item => {
+    const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000/api/v1/products")
+     .then((response) => response.json())
+     .then(datatest => {
+
+       if(datatest !== undefined){
+       setData(datatest.data.data);
+       
+      }
+      
+     })
+
+    
+   }, []);
+ 
+   if(data !== null){
+
+    const component = data.map(item => {
         return(
             <div className='reciept-item'>
                 <div className='reciept-item-name'> {item.name} </div>
@@ -18,7 +36,7 @@ export default function Reciept({address}) {
 
         <div className='reciept-item-body'>
         
-            {data}
+            {component}
         
         </div>
 
@@ -61,4 +79,5 @@ export default function Reciept({address}) {
 
     </div>
   )
+   }
 }

@@ -1,25 +1,44 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './products.css'
 import Carousel from 'react-multi-carousel'
 import { Link } from 'react-router-dom'
-import dataiyad from '../sample (1).json'
 import ProductItem from './ProductItem'
 
 export default function Products() {
 
-    const datajsonkitchen = dataiyad.map(item => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000/api/v1/products")
+     .then((response) => response.json())
+     .then(datatest => {
+
+       if(datatest !== undefined){
+       setData(datatest.data.data);
+       
+      }
+      
+     })
+
+    
+   }, []);
+ 
+   if(data !== null){
+
+
+    const datajsonkitchen =  data.map(item => {
         if(item.category.toLowerCase() == 'kitchen consumables'){
         return(
             <ProductItem item={item}/>
         )}
     })
-    const datajsonbeverages = dataiyad.map(item => {
+    const datajsonbeverages =  data.map(item => {
         if(item.category.toLowerCase() == 'beverages'){
         return(
             <ProductItem item={item}/>
         )}
     })
-    const datajsoncheese = dataiyad.map(item => {
+    const datajsoncheese = data.map(item => {
         if(item.category.toLowerCase() == 'cheese'){
         return(
             <ProductItem item={item}/>
@@ -55,7 +74,7 @@ export default function Products() {
         infinite={false}
         autoPlaySpeed={1000000}
         >
-            <Link to={`/CategoryPage/${'Kitchen Consumables'}`} className='products-category1 products-item'>Kitchen Consumables</Link>
+            <Link to={`/CategoryPage/${'kitchen Consumables'}`} className='products-category1 products-item'>Kitchen Consumables</Link>
             {datajsonkitchen}
             
         </Carousel>
@@ -84,5 +103,6 @@ export default function Products() {
             
         </Carousel>
     </div>
-  )
+ )
+  }
 }

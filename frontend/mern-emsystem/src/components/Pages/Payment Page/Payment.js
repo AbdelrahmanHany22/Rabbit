@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './payment.css'
 import cod from '../../images/cod.png'
 import Cart from '../../Cart/Cart'
@@ -7,6 +7,7 @@ import mappin from '../../images/map-pin.png'
 import { Link } from 'react-router-dom'
 
 export default function Payment({lng,setLng,lat,setLat,zoom,setZoom, address}) {
+
   return (
     <div className='payment-body'>
 
