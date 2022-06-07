@@ -4,26 +4,19 @@ import './cart.css'
 
 export default function Cart() {
 
-    const [data, setData] = useState(null);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/v1/products")
-     .then((response) => response.json())
-     .then(datatest => {
-
-       if(datatest !== undefined){
-       setData(datatest.data.data);
-       
-      }
-      
-     })
-
     
-   }, []);
+  setData(JSON.parse(localStorage.getItem("Cart")))
+  
+    
+  }, [])
  
    if(data !== null){
 
     const component = data.map(item => {
+
         return(
             <div className='cartpage-item'>
                 <img alt='' src={item.picture} />

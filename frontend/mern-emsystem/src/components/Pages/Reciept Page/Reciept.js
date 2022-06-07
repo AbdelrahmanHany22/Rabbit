@@ -1,28 +1,62 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useCookies } from 'react-cookie';
+import Login from '../../Login/Login';
 import './reciept.css'
 
 export default function Reciept({address}) {
 
-    const [data, setData] = useState(null);
+    const [cookies, setCookie, removeCookie] = useCookies(['user']);
 
-  useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/v1/products")
-     .then((response) => response.json())
-     .then(datatest => {
 
-       if(datatest !== undefined){
-       setData(datatest.data.data);
-       
+    const total = cookies.Total
+    const cart = cookies.Cart
+    const id = cookies.CartID
+    const token = cookies.jwt
+
+    useEffect( () => {
+
+    async function asyncfunc() {
+         const config = {
+
+        "headers": { "Authorization": `Bearer ${token}` },
+
+
+    };
+
+    const body = {
+        "cart": `${id}`,
+        "price": `${total}`
+    }
+
+      const order = await axios.post('http://127.0.0.1:5005/api/v1/orders',body,config)
+
+
+      const bodyship = {
+        "order": `${order.data.data._id}`
+    }
+
+
+      try {
+        const shipping = await axios.post('http://127.0.0.1:5002/api/v1/shipments',bodyship,config)
+
+        console.log(shipping);
+      } catch (error) {
+          console.log(error);
       }
-      
-     })
 
     
-   }, []);
- 
-   if(data !== null){
 
-    const component = data.map(item => {
+    } 
+    
+    asyncfunc()
+
+    }, [])
+
+    
+    
+
+    const component = cart.map(item => {
         return(
             <div className='reciept-item'>
                 <div className='reciept-item-name'> {item.name} </div>
@@ -30,6 +64,8 @@ export default function Reciept({address}) {
             </div>
         )
     })
+
+
 
   return (
     <div className='reciept-body'>
@@ -60,7 +96,7 @@ export default function Reciept({address}) {
             </div>
             <div className='reciept-item'>
                 <div>SubTotal</div>
-                <div>EGP 100</div>
+                <div>{total}</div>
             </div>
             <div className='reciept-item'>
                 <div>Delivery Fee</div>
@@ -68,7 +104,7 @@ export default function Reciept({address}) {
             </div>
             <div className='reciept-item'>
                 <div>Total</div>
-                <div>EGP 120</div>
+                <div>{+total + +20}</div>
             </div>
             <div className='reciept-item'>
                 <div>Delivery Time</div>
@@ -79,5 +115,5 @@ export default function Reciept({address}) {
 
     </div>
   )
-   }
+   
 }

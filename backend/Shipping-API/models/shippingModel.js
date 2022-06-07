@@ -8,7 +8,8 @@ const shipmentSchema = mongoose.Schema({
     order: {
         type: mongoose.Schema.ObjectId,
         ref: 'Order',
-        required: true
+        required: true,
+        unique: true
     },
     coordinatesOfCurrentLocation: {
         type: [Number],

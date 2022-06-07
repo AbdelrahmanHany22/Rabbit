@@ -2,6 +2,11 @@ import React, { useState } from 'react'
 import './signup.css'
 import Hide from '../../images/hide.png'
 import Show from '../../images/show.png'
+import {useCookies} from 'react-cookie'
+
+
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export default function Signup() {
 
@@ -11,17 +16,30 @@ export default function Signup() {
     const [cnfrmpassword,setCnfrmPassword] = useState()
     const [passwordShown, setPasswordShown] = useState(false);
     const [cnfrmpasswordShown, setCnfrmPasswordShown] = useState(false);
+    const [cookies, setCookie, removeCookie] = useCookies(['user']);
+    const navigate = useNavigate()
 
 
-    const HandleSubmit = (e) => {
+
+    const HandleSubmit = async (e) => {
         e.preventDefault()
-        const user={email,password,cnfrmpassword}
-  
-        fetch('https://localhost:3000', {
-          method: 'POST',
-          headers: {"Content-Type" : "application/json"},
-          body: JSON.stringify(user)
-        })
+        let user={
+          'name':`${name}`,
+          'email':`${email}`,
+          'password':`${password}`,
+          'passwordConfirm':`${cnfrmpassword}`
+        }
+
+        console.log(user);
+
+        const result = await axios.post("http://127.0.0.1:5001/api/v1/users/signup/",user)
+
+        const token = result.data.token
+
+        setCookie('jwt',token)
+
+        navigate('/')
+
       }
 
       function start(){

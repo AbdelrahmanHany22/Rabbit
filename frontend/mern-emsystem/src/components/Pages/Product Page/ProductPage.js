@@ -49,6 +49,12 @@ export default function ProductPage() {
     function addItemAndGetNumberOfOccurences (NewObject){
     
         let returnCart = JSON.parse(localStorage.getItem('Cart'))
+
+        let total = JSON.parse(localStorage.getItem('Total'))
+
+        total = total + NewObject.price
+
+        localStorage.setItem("Total",total)
     
         returnCart.push(NewObject)
     
@@ -68,8 +74,16 @@ export default function ProductPage() {
     
     function removeItemAndGetNumberOfOccurences (idOfItemYouWantToKnowTheNumberOf ){
         let returnCart = JSON.parse(localStorage.getItem('Cart'))
+
+        let total = JSON.parse(localStorage.getItem('Total'))
+
     
         var idx = returnCart.findIndex(p => p.id===idOfItemYouWantToKnowTheNumberOf)
+
+        total = total - returnCart[idx].price
+
+        localStorage.setItem("Total",total)
+
 
         returnCart.splice(idx,1)
         
@@ -96,7 +110,7 @@ export default function ProductPage() {
                     <div className='price-buttons'>
                         <button className='item-button' onClick={() => removeItemAndGetNumberOfOccurences(id)} >-</button>
                             {howManyItems(id)}
-                        <button className='item-button' onClick={() => addItemAndGetNumberOfOccurences({id:id,name:item.name})} >+</button>
+                        <button className='item-button' onClick={() => addItemAndGetNumberOfOccurences(item)} >+</button>
                     </div>
                 </div>
                 

@@ -28,8 +28,10 @@ exports.getBestFiveResults = catchAsync(async (req, res, next) => {
 
 
     if (data === null) {
-        const regexp = new RegExp('^' + req.params.chars);
+        const regexp = new RegExp(".*" + req.params.chars + ".*");
         const products = await Product.find({name: regexp}).limit(4);
+
+        console.log(products);
 
         await client.setEx(req.params.chars, 10000, JSON.stringify(products));
 

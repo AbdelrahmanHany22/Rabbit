@@ -15,6 +15,7 @@ import CategoryPage from './components/Pages/Category Page/CategoryPage';
 import ProductPage from './components/Pages/Product Page/ProductPage';
 import Reciept from './components/Pages/Reciept Page/Reciept';
 import Signup from './components/Pages/Sign Up Page/Signup';
+import GuestSignup from './components/Pages/Guest Sign Up Page/GuestSignup'
 import Test from './test';
 
 
@@ -50,6 +51,7 @@ export default function App(){
 
   useEffect(() => {
   localStorage.setItem("Cart",JSON.stringify([]))
+  localStorage.setItem("Total",0)
     
   }, [])
   
@@ -79,6 +81,8 @@ export default function App(){
                 <Route path='/Signup' element={<Signup />} />
 
                 <Route path='/test' element={<Test />} />
+
+                <Route path='/GuestSignUp' element={<GuestSignup />} />
 
         </Routes>
 

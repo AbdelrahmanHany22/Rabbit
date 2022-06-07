@@ -2,22 +2,31 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Hide from '../images/hide.png'
 import Show from '../images/show.png'
+import axios from 'axios'
+import {useCookies} from 'react-cookie'
 import './login.css'
 
 export default function Login({toggle}) {
 
     const [email, setEmail] = useState()
     const [password,setPassword] = useState()
+    const [cookies, setCookie, removeCookie] = useCookies(['user']);
 
-    const HandleSubmit = (e) => {
+    const HandleSubmit = async (e) => {
       e.preventDefault()
-      const user={email,password}
+      const user={
+        'email':email,
+        'password':password
+    }
 
-      fetch('https://localhost:3000', {
-        method: 'POST',
-        headers: {"Content-Type" : "application/json"},
-        body: JSON.stringify(user)
-      })
+    const result = await axios.post("http://127.0.0.1:5001/api/v1/users/login/",user)
+
+    const token = result.data.token
+
+    setCookie('jwt',token)
+    
+    window.location.reload()
+      
     }
 
     const [passwordShown, setPasswordShown] = useState(false);

@@ -72,6 +72,8 @@
 
 .navsearch{
     width: 20vw;  
+    display: flex;
+    flex-direction: column;
 }
 
 .navsearch > img{
@@ -109,6 +111,22 @@
     width: 100%;
     background-position: 5% 50%;
 
+  }
+
+  .search-results{
+
+    font-size: 1vw;
+    margin-top: 2.2vw;
+    width:14.5vw;
+    z-index: 1;
+    position: absolute;
+
+  }
+
+  .search-results-item{
+      padding: 0.5vw;
+      border: 1px solid lightgray;
+      background-color: white;
   }
 
   @media only screen and (max-width: 1024px) {
