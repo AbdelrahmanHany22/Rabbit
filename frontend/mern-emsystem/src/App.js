@@ -1,37 +1,4 @@
-<<<<<<< HEAD
-import React from 'react';
 
-import axios from 'axios'
-import Stripe from "react-stripe-checkout"
-
-
-const App = () => {
-
-  const handleToken = (totalAmount, token) => {
-    try {
-      axios.post("http://localhost:5000/api/stripe/pay", {
-        token: token.id,
-        amount:totalAmount
-      });
-    } catch(error) {
-      console.log(error);
-    };
-  }
-  const tokenHandler = (token) => {
-    handleToken(100,token);
-
-  }
-  return (
-    <div>
-      <Stripe
-          stripeKey="pk_test_51KzozhA6b4UJVtQR3LBjFExUOXSBwYA1yqHhR8Cwx9Ede3trQ2lpuTFj54RkmNHufAM561gjF7F26060YsmBFAmn00VfcahP53"
-          token={tokenHandler}
-          />
-    </div>
-  );
-}
-export default App;
-=======
 import React, { useLayoutEffect, useState } from 'react'
 import {
     BrowserRouter as Router,
@@ -48,7 +15,7 @@ import ChangeAddress from './components/Pages/Change Address Page/ChangeAddress'
 import CategoryPage from './components/Pages/Category Page/CategoryPage';
 import ProductPage from './components/Pages/Product Page/ProductPage';
 import Reciept from './components/Pages/Reciept Page/Reciept';
-
+import KommunicateChat from './chat';
 
 export default function App() {
 
@@ -81,10 +48,13 @@ export default function App() {
 
         </Routes>
 
-      <Footer />
+        
+
+      <Footer />     
+
 
 
     </Router>
   )
 }
->>>>>>> 01de36654a03cbbbe1297c1ca6ff0ccb98956aff
+
