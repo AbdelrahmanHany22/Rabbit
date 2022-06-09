@@ -9,6 +9,7 @@ const Products = require('../models/productModel');
 
 exports.updateInventory = catchAsync(
     async (req, res, next) => {
+        console.log(req.body);
 
         let f = 0;
 
@@ -21,6 +22,7 @@ exports.updateInventory = catchAsync(
 
 
         if (file.inventory.mimetype.split('/')[1] !== 'csv') {
+            
             return next(new AppError('Please upload a csv file containing the inventory list.', 404));
         }
 
