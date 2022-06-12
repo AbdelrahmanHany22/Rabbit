@@ -1,0 +1,148 @@
+.payment-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 100vw;
+}
+
+.payment-info{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 31.5vw;
+    margin-right: 1vw;
+}
+
+.payment-inputs{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+}
+
+.payment-input{
+    margin:2vw;
+    padding:2vw;
+}
+
+.payment-details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+
+}
+
+.cod{
+    width: 4.5vmin;
+}
+
+.image:active{
+    background-color: #061C15;
+}
+
+.image{
+    background-color: #124831;
+    color: #DFFE16;
+    font-weight: 900;
+    font-size: 1.5vmin;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-cart{
+    display: flex;
+    width: 50%;
+    height: 31.5vw;
+    margin: 1vw;
+    
+}
+
+.payment-price{
+    width: 90%;
+    background-color: lightgray;
+    height: 10vmax;
+    font-size: 4vmax;
+    padding-top: 2vh;
+    padding-left: 10%;
+    font-weight: 900;
+}
+
+.payment-map{
+    height: 35vh;
+    width: 47vw;
+    margin: 1vw;
+}
+
+.payment-pin{
+    position: absolute;
+    z-index: 1;
+    width: 2vw;
+    margin-top: 8%;
+    margin-left: 23%;
+   
+}
+
+.payment-sidebar{
+    display: none;
+}
+
+.payment-text-button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1vw;
+    border-top: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+
+}
+
+.payment-button{
+    background-color:#DFFE16 ;
+    color: #124831;
+    padding: 1vw;
+    border-radius: 15px;
+    font-weight: 900;
+}
+
+.payment-text{
+    font-size: 1vw;
+    width: 35vw;
+    overflow-y: scroll;
+}
+
+
+@media only screen and (max-width: 1024px){
+
+    .payment-info, .payment-cart{
+        width: 50%;
+        height: 47vh;
+    }
+
+    .payment-input{
+        margin-top: 3vh;
+        margin-bottom: 3vh;
+        padding-top: 6vw;
+        padding-bottom: 6vw;
+    }
+
+    .payment-body{
+        height: 55vh;
+    }
+
+    .payment-details{
+        height: 100%;
+        max-width: 100%;
+        justify-content: space-between;
+    }
+
+    .cod{
+        width: 6vw;
+    }
+
+}

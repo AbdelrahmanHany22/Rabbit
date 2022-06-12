@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.html{
+    background-color:#061C15;
+}
+.app-body{
+    display: flex;
+    flex-direction: column;
+    background-color: #061C15;
+    position: relative;
+}
